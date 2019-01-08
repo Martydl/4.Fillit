@@ -6,7 +6,7 @@
 /*   By: mde-laga <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/12/10 13:43:52 by mde-laga          #+#    #+#             */
-/*   Updated: 2019/01/08 17:49:45 by mde-laga         ###   ########.fr       */
+/*   Updated: 2019/01/08 17:58:35 by mde-laga         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -138,9 +138,9 @@ int		main(int ac, char **av)
 {
 	int		fd;
 	char	*str;
-	char	**tab;
-	int		i;
 
+	(void)ac;
+	str = NULL;
 	fd = open(av[1], O_RDONLY);
 	if (!str && (!(str = ft_strnew(1))))
 		return (0);
@@ -149,5 +149,6 @@ int		main(int ac, char **av)
 		puts(str);
 	else
 		puts("error");
+	free(str);
 	return (0);
 }
