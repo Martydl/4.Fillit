@@ -6,7 +6,7 @@
 /*   By: mde-laga <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/12/10 13:43:52 by mde-laga          #+#    #+#             */
-/*   Updated: 2019/01/09 18:13:02 by mde-laga         ###   ########.fr       */
+/*   Updated: 2019/01/09 18:43:00 by mde-laga         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,7 +50,7 @@ int		ft_verifline(char *str)
 		return (1);
 	while (str[i])
 	{
-		str[i] == '#' ? hash++ : hash;
+		str[i] == '#' ? hash++ : 0;
 		if (str[i] == '\n' && str[i + 1] != '\n')
 			j++;
 		else if ((str[i] == '\n' && str[i + 1] == '\n') || !str[i + 2])
@@ -67,33 +67,27 @@ int		ft_verifline(char *str)
 	return (0);
 }
 
-char	**ft_cutline(char *str)
+char	**ft_cutline(char *str, char **tab)
 {
-	char	**tab;
 	int		i;
 	int		j;
-	int		k;
 	int		size;
 
-	i = 0;
-	j = 0;
-	k = 0;
+	i = -1;
 	size = 0;
-	while (str[i])
-	{
-		if (str[i] == '\n' && (str[i + 1] == '\n' || !str[i + 1]))
-			size++;
-		i++;
-	}
+	while (str[++i])
+		(str[i] == '\n' && (str[i + 1] == '\n' || !str[i + 1])) ? size++ : 0;
 	if (!(tab = (char**)malloc(sizeof(char*) * (size + 1))))
 		return (NULL);
 	i = 0;
+	j = 0;
 	while (str[i] && str[i + 18])
 	{
-		tab[k++] = ft_strsub(str, i, 19);
+		if (!(tab[j++] = ft_strsub(str, i, 19)))
+			return (NULL);
 		i += 21;
 	}
-	tab[k] = NULL;
+	tab[j] = NULL;
 	return (tab);
 }
 
@@ -119,7 +113,6 @@ int		ft_check_neighbours(char *str)
 		}
 		i++;
 	}
-	printf("%d\n", count);
 	if (count == 6 || count == 8)
 		return (0);
 	return (1);
@@ -129,13 +122,11 @@ int		main(int ac, char **av)
 {
 	int		fd;
 	char	*str;
-	char	**tab;
+	char	**tabe;
 	int		i;
 
 	(void)ac;
-	i = 0;
 	str = NULL;
-	tab = NULL;
 	fd = open(av[1], O_RDONLY);
 	if (!str && (!(str = ft_strnew(1))))
 		return (0);
@@ -145,20 +136,22 @@ int		main(int ac, char **av)
 		ft_putstr("error");
 		return (0);
 	}
-	tab = ft_cutline(str);
-	while (tab[i])
+	tabe = NULL;
+	tabe = ft_cutline(str, tabe);
+	free(str);
+	i = 0;
+	while (tabe[i])
 	{
-		if (ft_check_neighbours(tab[i]) == 0)
-			printf("Piece:\n%s\n\n", tab[i++]);
+		if (ft_check_neighbours(tabe[i]) == 0)
+			printf("Piece:\n%s\n\n", tabe[i++]);
 		else
 		{
 			ft_putstr("error");
 			break ;
 		}
 	}
-	free(str);
-	while (i <= 0)
-		free(tab[i--]);
-	free(tab);
+	while (i >= 0)
+		ft_strdel(&tabe[i--]);
+	free(tabe);
 	return (0);
 }
