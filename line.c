@@ -6,7 +6,7 @@
 /*   By: mde-laga <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/12/10 13:43:52 by mde-laga          #+#    #+#             */
-/*   Updated: 2019/01/09 18:43:00 by mde-laga         ###   ########.fr       */
+/*   Updated: 2019/01/09 19:40:43 by mde-laga         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,7 @@
 #include <stdio.h>
 #include <fcntl.h>
 
-char	*ft_getline(int fd, char *str)
+char	*ft_getline(int fd, char *line)
 {
 	int		ret;
 	char	buf[BUFF_SIZE + 1];
@@ -23,17 +23,17 @@ char	*ft_getline(int fd, char *str)
 	while ((ret = read(fd, buf, BUFF_SIZE)) > 0)
 	{
 		buf[ret] = '\0';
-		tmp = str;
-		if (!(str = ft_strjoin(tmp, buf)))
+		tmp = line;
+		if (!(line = ft_strjoin(tmp, buf)))
 			return (0);
 		free(tmp);
 	}
 	if (ret == -1)
 		return (0);
-	return (str);
+	return (line);
 }
 
-int		ft_verifline(char *str)
+int		ft_verifline(char *ver)
 {
 	int i;
 	int j;
@@ -41,24 +41,28 @@ int		ft_verifline(char *str)
 	int len;
 	int hash;
 
+	hash = 0;
+	len = ft_strlen(ver);
 	i = 0;
+	if (len > 545 || ver[i] == '\n' || ver[len - 2] == '\n')
+		return (1);
 	j = 1;
 	k = 0;
-	hash = 0;
-	len = ft_strlen(str);
-	if (len > 545 || str[i] == '\n' || str[len - 2] == '\n')
-		return (1);
-	while (str[i])
+	while (ver[i])
 	{
-		str[i] == '#' ? hash++ : 0;
-		if (str[i] == '\n' && str[i + 1] != '\n')
-			j++;
-		else if ((str[i] == '\n' && str[i + 1] == '\n') || !str[i + 2])
-			if (hash != 4 || j != 4 || (j = 0) || (hash = 0))
-				return (1);
-		if (str[i] == '\n' && str[i - 1] == '\n' && str[i + 1] == '\n')
+		ver[i] == '#' ? hash++ : 0;
+		if (ver[i] == '\n' && ver[i - 1] == '\n' && ver[i + 1] == '\n')
 			return (1);
-		if (str[i] != '\n')
+		if (ver[i] == '\n' && ver[i + 1] != '\n')
+			j++;
+		else if ((ver[i] == '\n' && ver[i + 1] == '\n') || !ver[i + 2])
+		{
+			if (hash != 4 || j != 4)
+				return (1);
+			j = 0;
+			hash = 0;
+		}
+		if (ver[i] != '\n')
 			k++;
 		else if ((k != 4 && k != 0) || (k = 0))
 			return (1);
@@ -67,7 +71,7 @@ int		ft_verifline(char *str)
 	return (0);
 }
 
-char	**ft_cutline(char *str, char **tab)
+char	**ft_cutline(char *cut, char **tab)
 {
 	int		i;
 	int		j;
@@ -75,15 +79,15 @@ char	**ft_cutline(char *str, char **tab)
 
 	i = -1;
 	size = 0;
-	while (str[++i])
-		(str[i] == '\n' && (str[i + 1] == '\n' || !str[i + 1])) ? size++ : 0;
+	while (cut[++i])
+		(cut[i] == '\n' && (cut[i + 1] == '\n' || !cut[i + 1])) ? size++ : 0;
 	if (!(tab = (char**)malloc(sizeof(char*) * (size + 1))))
 		return (NULL);
 	i = 0;
 	j = 0;
-	while (str[i] && str[i + 18])
+	while (cut[i] && cut[i + 18])
 	{
-		if (!(tab[j++] = ft_strsub(str, i, 19)))
+		if (!(tab[j++] = ft_strsub(cut, i, 19)))
 			return (NULL);
 		i += 21;
 	}
@@ -91,24 +95,26 @@ char	**ft_cutline(char *str, char **tab)
 	return (tab);
 }
 
-int		ft_check_neighbours(char *str)
+int		ft_check_neighbours(char *piece)
 {
 	int i;
 	int count;
 
 	i = 0;
 	count = 0;
-	while (str[i])
+	printf("str =\n%s\n", piece);
+	printf("wtf = %c\n", piece[23]);
+	while (piece[i])
 	{
-		if (str[i] == '#')
+		if (piece[i] == '#')
 		{
-			if (str[i + 1] == '#')
+			if (piece[i + 1] == '#')
 				count++;
-			if (str[i - 1] == '#')
+			if (piece[i - 1] == '#')
 				count++;
-			if (str[i + 5] == '#')
+			if (piece[i + 5] == '#')
 				count++;
-			if (str[i - 5] == '#')
+			if (piece[i - 5] == '#')
 				count++;
 		}
 		i++;
