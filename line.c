@@ -102,23 +102,22 @@ int		ft_check_neighbours(char *piece)
 
 	i = 0;
 	count = 0;
-	printf("str =\n%s\n", piece);
-	printf("wtf = %c\n", piece[23]);
 	while (piece[i])
 	{
 		if (piece[i] == '#')
 		{
-			if (piece[i + 1] == '#')
+			if (i + 1 <= 18 && piece[i + 1] == '#')
 				count++;
 			if (piece[i - 1] == '#')
 				count++;
-			if (piece[i + 5] == '#')
+			if (i + 5 <= 18 && piece[i + 5] == '#')
 				count++;
 			if (piece[i - 5] == '#')
 				count++;
 		}
 		i++;
 	}
+	printf("count = %d\n", count);
 	if (count == 6 || count == 8)
 		return (0);
 	return (1);
