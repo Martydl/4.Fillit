@@ -4,7 +4,8 @@ CC = gcc
 
 CFLAGS = -Wall -Wextra -Werror
 
-SRC = sources/line.c \
+SRC = 	sources/line.c \
+		sources/format.c
 
 OBJ = $(SRC:.c=.o)
 

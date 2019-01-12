@@ -6,13 +6,12 @@
 /*   By: mde-laga <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/12/10 13:43:52 by mde-laga          #+#    #+#             */
-/*   Updated: 2019/01/12 11:42:30 by mde-laga         ###   ########.fr       */
+/*   Updated: 2019/01/12 14:44:35 by algautie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "fillit.h"
 #include <stdio.h>
-#include <fcntl.h>
 
 char	*ft_getline(int fd, char *line)
 {
@@ -122,25 +121,6 @@ int		ft_check_neighbours(char *piece)
 	return (1);
 }
 
-void	ft_letters(char **tab)
-{
-	int i;
-	int j;
-
-	j = 0;
-	while (tab[j])
-	{
-		i = 0;
-		while (tab[j][i])
-		{
-			if (tab[j][i] == '#')
-				tab[j][i] = 'A' + j;
-			i++;
-		}
-		j++;
-	}
-}
-
 int		main(int ac, char **av)
 {
 	int		fd;
@@ -173,6 +153,7 @@ int		main(int ac, char **av)
 			break ;
 		}
 	}
+	ft_upleft(tab);
 	ft_letters(tab);
 	i = 0;
 	while (tab[i])

@@ -6,7 +6,7 @@
 /*   By: mde-laga <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/12/10 13:06:22 by mde-laga          #+#    #+#             */
-/*   Updated: 2019/01/12 12:14:58 by algautie         ###   ########.fr       */
+/*   Updated: 2019/01/12 14:43:34 by algautie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,10 +19,9 @@
 # include <sys/types.h>
 # include <sys/uio.h>
 # include <unistd.h>
+# include <fcntl.h>
 
-typedef	struct	s_tetriminos
-{
-	char	*piece[4];
-}				t_tetriminos;
+void	ft_upleft(char **tab);
+void	ft_letters(char **tab);
 
 #endif
