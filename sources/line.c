@@ -6,7 +6,7 @@
 /*   By: mde-laga <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/12/10 13:43:52 by mde-laga          #+#    #+#             */
-/*   Updated: 2019/01/12 14:57:04 by mde-laga         ###   ########.fr       */
+/*   Updated: 2019/01/12 16:33:53 by mde-laga         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -68,7 +68,7 @@ int		ft_verifline(char *line)
 
 	hash = 0;
 	len = ft_strlen(line);
-	if (len > 545 || line[0] == '\n' || line[len - 2] == '\n')
+	if (len > 545)
 		return (1);
 	j = 1;
 	k = 0;
