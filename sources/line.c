@@ -6,12 +6,11 @@
 /*   By: mde-laga <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/12/10 13:43:52 by mde-laga          #+#    #+#             */
-/*   Updated: 2019/01/12 14:44:35 by algautie         ###   ########.fr       */
+/*   Updated: 2019/01/12 14:57:04 by mde-laga         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "fillit.h"
-#include <stdio.h>
 
 char	*ft_getline(int fd, char *line)
 {
@@ -32,21 +31,11 @@ char	*ft_getline(int fd, char *line)
 	return (line);
 }
 
-int		ft_verifline(char *line)
+int		ft_verifstuff(char *line, int j, int k, int hash)
 {
 	int i;
-	int j;
-	int k;
-	int len;
-	int hash;
 
-	hash = 0;
-	len = ft_strlen(line);
 	i = 0;
-	if (len > 545 || line[i] == '\n' || line[len - 2] == '\n')
-		return (1);
-	j = 1;
-	k = 0;
 	while (line[i])
 	{
 		line[i] == '#' ? hash++ : 0;
@@ -67,6 +56,24 @@ int		ft_verifline(char *line)
 			return (1);
 		i++;
 	}
+	return (0);
+}
+
+int		ft_verifline(char *line)
+{
+	int j;
+	int k;
+	int len;
+	int hash;
+
+	hash = 0;
+	len = ft_strlen(line);
+	if (len > 545 || line[0] == '\n' || line[len - 2] == '\n')
+		return (1);
+	j = 1;
+	k = 0;
+	if (ft_verifstuff(line, j, k, hash) != 0)
+		return (1);
 	return (0);
 }
 
@@ -119,47 +126,4 @@ int		ft_check_neighbours(char *piece)
 	if (count == 6 || count == 8)
 		return (0);
 	return (1);
-}
-
-int		main(int ac, char **av)
-{
-	int		fd;
-	char	*line;
-	char	**tab;
-	int		i;
-
-	(void)ac;
-	line = NULL;
-	fd = open(av[1], O_RDONLY);
-	if (!line && (!(line = ft_strnew(1))))
-		return (0);
-	line = ft_getline(fd, line);
-	if (ft_verifline(line) != 0)
-	{
-		ft_putstr("error");
-		return (0);
-	}
-	tab = NULL;
-	tab = ft_cutline(line, tab);
-	free(line);
-	i = 0;
-	while (tab[i])
-	{
-		if (ft_check_neighbours(tab[i]) == 0)
-			printf("Piece:\n%s\n\n", tab[i++]);
-		else
-		{
-			ft_putstr("error");
-			break ;
-		}
-	}
-	ft_upleft(tab);
-	ft_letters(tab);
-	i = 0;
-	while (tab[i])
-		printf("Piece:\n%s\n\n", tab[i++]);
-	while (i >= 0)
-		ft_strdel(&tab[i--]);
-	free(tab);
-	return (0);
 }

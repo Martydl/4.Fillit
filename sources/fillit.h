@@ -6,7 +6,7 @@
 /*   By: mde-laga <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/12/10 13:06:22 by mde-laga          #+#    #+#             */
-/*   Updated: 2019/01/12 14:43:34 by algautie         ###   ########.fr       */
+/*   Updated: 2019/01/12 14:56:16 by mde-laga         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,6 +21,10 @@
 # include <unistd.h>
 # include <fcntl.h>
 
+char	*ft_getline(int fd, char *line);
+int		ft_verifline(char *line);
+char	**ft_cutline(char *line, char **tab);
+int		ft_check_neighbours(char *piece);
 void	ft_upleft(char **tab);
 void	ft_letters(char **tab);
 
