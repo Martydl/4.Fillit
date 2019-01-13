@@ -1,0 +1,8 @@
+1. Read and put pieces in array DONE
+2. Check valid pieces DONE
+3. Upleft DONE
+4. Replace "#" with letters DONE
+5. Makefile DONE
+6. Compute min square size X
+7. Code back fucking tracking X
+8. Check speed X
