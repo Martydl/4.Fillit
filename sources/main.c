@@ -6,7 +6,7 @@
 /*   By: mde-laga <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/01/12 14:51:10 by mde-laga          #+#    #+#             */
-/*   Updated: 2019/01/12 14:56:44 by mde-laga         ###   ########.fr       */
+/*   Updated: 2019/01/13 19:50:48 by algautie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,8 +18,11 @@ int		main(int ac, char **av)
 	char	*line;
 	char	**tab;
 	int		i;
+	char	*square;
+	char	letter;
 
 	(void)ac;
+	letter = 'A';
 	line = NULL;
 	fd = open(av[1], O_RDONLY);
 	if (!line && (!(line = ft_strnew(1))))
@@ -37,7 +40,8 @@ int		main(int ac, char **av)
 	while (tab[i])
 	{
 		if (ft_check_neighbours(tab[i]) == 0)
-			printf("Piece:\n%s\n\n", tab[i++]);
+			//printf("Piece:\n%s\n\n", tab[i++]);
+			i++;
 		else
 		{
 			ft_putstr("error");
@@ -49,6 +53,12 @@ int		main(int ac, char **av)
 	i = 0;
 	while (tab[i])
 		printf("Piece:\n%s\n\n", tab[i++]);
+	if (!(square = ft_create_square(tab)))
+	{
+		ft_putstr("error");
+		return (0);
+	}
+	printf("square len = %ld\n", ft_strlen(square));
 	while (i >= 0)
 		ft_strdel(&tab[i--]);
 	free(tab);

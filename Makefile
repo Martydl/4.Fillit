@@ -6,7 +6,8 @@ CFLAGS = -Wall -Wextra -Werror
 
 SRC = 	sources/line.c \
 		sources/format.c \
-		sources/main.c
+		sources/main.c \
+		sources/backtracking.c \
 
 OBJ = $(SRC:.c=.o)
 
