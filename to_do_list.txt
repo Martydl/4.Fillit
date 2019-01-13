@@ -9,7 +9,7 @@
 9. Check speed X
 
 Functions to code:
--give smallest possible square from nb of pieces DONE (not tested)
--check if piece doesn't overlap at a given position DONE (not tested)
+-give smallest possible square from nb of pieces DONE (seems functionnal)
+-check if piece doesn't overlap at a given position DONE (not working yet)
 -try all possible positions for a pieces DONE (not tested)
 -backtracking function X
