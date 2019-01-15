@@ -6,19 +6,22 @@
 /*   By: algautie <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/01/13 17:39:45 by algautie          #+#    #+#             */
-/*   Updated: 2019/01/13 20:06:28 by algautie         ###   ########.fr       */
+/*   Updated: 2019/01/15 15:09:01 by mde-laga         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "fillit.h"
 #include <stdio.h>
+
 int		ft_smallest_square(int nb)
 {
 	int		size;
 
-	size = (nb == 1 ? 2 : 0);
-	size = (nb == 2 ? 3 : 0);
-	if (nb >= 3 && nb <= 4)
+	if (nb == 1)
+		size = 2;
+	else if (nb == 2)
+		size = 3;
+	else if (nb >= 3 && nb <= 4)
 		size = 4;
 	else if (nb >= 5 && nb <= 6)
 		size = 5;
@@ -79,8 +82,7 @@ char	*ft_create_square(char **tab)
 	nb_pieces = 0;
 	while (tab[nb_pieces] != NULL)
 		nb_pieces++;
-	//size = ft_smallest_square(nb_pieces);
-	size = 3;
+	size = ft_smallest_square(nb_pieces);
 	if (!(square = (char*)malloc(sizeof(char) * size * size + 1)))
 		return (NULL);
 	square[size * size] = '\0';
@@ -88,6 +90,7 @@ char	*ft_create_square(char **tab)
 	while (++i != size * size)
 		square[i] = '.';
 	dprintf(1, "i: %d\n" , i);
+	dprintf(1, "\n%s\n\n", square);
 	dprintf(1, "ft_check_position ret = %d\n", ft_check_position(square, tab[3], size, 1));
 	return (square);
 }
