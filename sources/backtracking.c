@@ -6,7 +6,7 @@
 /*   By: algautie <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/01/13 17:39:45 by algautie          #+#    #+#             */
-/*   Updated: 2019/01/15 15:09:01 by mde-laga         ###   ########.fr       */
+/*   Updated: 2019/01/15 16:46:50 by mde-laga         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -90,8 +90,9 @@ char	*ft_create_square(char **tab)
 	while (++i != size * size)
 		square[i] = '.';
 	dprintf(1, "i: %d\n" , i);
+	dprintf(1, "size: %d\n" , size);
 	dprintf(1, "\n%s\n\n", square);
-	dprintf(1, "ft_check_position ret = %d\n", ft_check_position(square, tab[3], size, 1));
+//	dprintf(1, "ft_check_position ret = %d\n", ft_check_position(square, tab[3], size, 1));
 	return (square);
 }
 

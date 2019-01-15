@@ -6,7 +6,7 @@
 /*   By: mde-laga <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/01/12 14:51:10 by mde-laga          #+#    #+#             */
-/*   Updated: 2019/01/13 19:50:48 by algautie         ###   ########.fr       */
+/*   Updated: 2019/01/15 16:54:46 by mde-laga         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,6 +50,7 @@ int		main(int ac, char **av)
 	}
 	ft_upleft(tab);
 	ft_letters(tab);
+	tab = ft_delret(tab, 3);
 	i = 0;
 	while (tab[i])
 		printf("Piece:\n%s\n\n", tab[i++]);

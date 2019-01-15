@@ -8,6 +8,7 @@ SRC = 	sources/line.c \
 		sources/format.c \
 		sources/main.c \
 		sources/backtracking.c \
+		sources/move_piece.c\
 
 OBJ = $(SRC:.c=.o)
 

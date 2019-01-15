@@ -6,7 +6,7 @@
 /*   By: algautie <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/01/12 14:41:03 by algautie          #+#    #+#             */
-/*   Updated: 2019/01/12 14:41:52 by algautie         ###   ########.fr       */
+/*   Updated: 2019/01/15 17:07:10 by mde-laga         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -63,4 +63,32 @@ void	ft_upleft(char **tab)
 			;
 		i++;
 	}
+}
+
+char	**ft_delret(char **tab, int nb_piece)
+{
+	char	**tab_new;
+	int		i;
+	int		j;
+	int		k;
+
+	if (!(tab_new = (char**)malloc(sizeof(char) * nb_piece + 1)))
+		return (NULL);
+	tab_new[nb_piece + 1] = NULL;
+	i = 0;
+	while (i <= nb_piece)
+	{
+		j = 0;
+		k = 0;
+		if (!(tab_new[i] = (char*)malloc(sizeof(char) * 17)))
+			return (NULL);
+		while (tab[i][k])
+		{
+			if (tab[i][k] != '\n')
+				tab_new[i][j++] = tab[i][k];
+			k++;
+		}
+		tab_new[i][j] = '\0';
+	}
+	return (tab_new);
 }
