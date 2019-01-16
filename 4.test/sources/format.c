@@ -6,7 +6,7 @@
 /*   By: algautie <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/01/12 14:41:03 by algautie          #+#    #+#             */
-/*   Updated: 2019/01/16 19:07:07 by mde-laga         ###   ########.fr       */
+/*   Updated: 2019/01/16 19:48:33 by mde-laga         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,37 +31,27 @@ int		ft_up_or_left(char *l, int sp, int dec)
 	return (1);
 }
 
-void	ft_upleft(t_piece *list)
+#include <stdio.h>
+void	ft_upleft(t_piece tetri)
 {
-	int i;
-
-	i = 0;
-	while (list[i].piece != NULL)
-	{
-		while (ft_up_or_left(list[i].piece, 1, 5))
-			;
-		while (ft_up_or_left(list[i].piece, 5, 1))
-			;
-		i++;
-	}
+	while (ft_up_or_left(tetri.piece, 1, 5))
+		;
+	while (ft_up_or_left(tetri.piece, 5, 1))
+		;
 }
-void	ft_letters(t_piece *list)
+void	ft_letters(t_piece tetri, int pos)
 {
 	int i;
-	int j;
 
 	i = 0;
-	while (list[i].piece)
+	while (tetri.piece[i])
 	{
-		j = 0;
-		while (list[i].piece[j])
-		{
-			if (list[i].piece[j] == '#')
-				list[i].piece[j] = 'A' + i;
-			j++;
-		}
+		if (tetri.piece[i] == '#')
+			tetri.piece[i] = 'A' + pos;
 		i++;
 	}
+	*tetri.type = 'A' + pos;
+	dprintf(1, "1");
 }
 
 void	ft_delret(char *piece)
@@ -90,46 +80,46 @@ void	ft_delret(char *piece)
 
 
 /*char	**ft_tab_new(char **tab_new, int nb_piece)
-{
-	int		i;
+  {
+  int		i;
 
-	if (!(tab_new = (char**)malloc(sizeof(char*) * (nb_piece + 1))))
-		return (NULL);
-	i = 0;
-	while (i < nb_piece)
-	{
-		if (!(tab_new[i++] = (char*)malloc(sizeof(char) * 17)))
-			return (NULL);
-	}
-	tab_new[nb_piece] = NULL;
-	return (tab_new);
-}
+  if (!(tab_new = (char**)malloc(sizeof(char*) * (nb_piece + 1))))
+  return (NULL);
+  i = 0;
+  while (i < nb_piece)
+  {
+  if (!(tab_new[i++] = (char*)malloc(sizeof(char) * 17)))
+  return (NULL);
+  }
+  tab_new[nb_piece] = NULL;
+  return (tab_new);
+  }
 
-char	**ft_delret(char **tab, int nb_piece)
-{
-	char	**tab_new;
-	int		i;
-	int		j;
-	int		k;
+  char	**ft_delret(char **tab, int nb_piece)
+  {
+  char	**tab_new;
+  int		i;
+  int		j;
+  int		k;
 
-	tab_new = NULL;
-	tab_new = ft_tab_new(tab_new, nb_piece);
-	i = 0;
-	while (tab[i])
-	{
-		j = 0;
-		k = 0;
-		while (tab[i][j])
-		{
-			if (tab[i][j] != '\n')
-				tab_new[i][k++] = tab[i][j];
-			j++;
-		}
-		tab_new[i][k++] = '\0';
-		i++;
-	}
-	while (i >= 0)
-		ft_strdel(&tab[i--]);
-	free(tab);
-	return (tab_new);
-}*/
+  tab_new = NULL;
+  tab_new = ft_tab_new(tab_new, nb_piece);
+  i = 0;
+  while (tab[i])
+  {
+  j = 0;
+  k = 0;
+  while (tab[i][j])
+  {
+  if (tab[i][j] != '\n')
+  tab_new[i][k++] = tab[i][j];
+  j++;
+  }
+  tab_new[i][k++] = '\0';
+  i++;
+  }
+  while (i >= 0)
+  ft_strdel(&tab[i--]);
+  free(tab);
+  return (tab_new);
+  }*/

@@ -6,7 +6,7 @@
 /*   By: mde-laga <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/12/10 13:06:22 by mde-laga          #+#    #+#             */
-/*   Updated: 2019/01/16 18:57:45 by mde-laga         ###   ########.fr       */
+/*   Updated: 2019/01/16 19:47:05 by mde-laga         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,15 +24,15 @@
 typedef struct	s_piece
 {
 	char	*piece;
-	int		pos;
+	int	*type;
 }				t_piece;
 
 char	*ft_getline(int fd, char *line);
 int		ft_verifline(char *line);
 t_piece	*ft_cutline(char *line, t_piece *list);
 int		ft_check_neighbours(char *piece);
-void	ft_upleft(t_piece *list);
-void	ft_letters(t_piece *list);
+void	ft_upleft(t_piece tetri);
+void	ft_letters(t_piece tetri, int pos);
 int		ft_smallest_square(int nb);
 char	*ft_create_square(char **tab);
 int		ft_backtrack(char *square, char **tab, char letter);
