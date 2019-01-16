@@ -6,7 +6,7 @@
 /*   By: mde-laga <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/12/10 13:43:52 by mde-laga          #+#    #+#             */
-/*   Updated: 2019/01/12 16:33:53 by mde-laga         ###   ########.fr       */
+/*   Updated: 2019/01/16 16:39:19 by mde-laga         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,10 +21,11 @@ char	*ft_getline(int fd, char *line)
 	while ((ret = read(fd, buf, BUFF_SIZE)) > 0)
 	{
 		buf[ret] = '\0';
-		tmp = line;
+		tmp = ft_strdup(line);
+		ft_strdel(&line);
 		if (!(line = ft_strjoin(tmp, buf)))
 			return (0);
-		free(tmp);
+		ft_strdel(&tmp);
 	}
 	if (ret == -1)
 		return (0);
@@ -40,20 +41,20 @@ int		ft_verifstuff(char *line, int j, int k, int hash)
 	{
 		line[i] == '#' ? hash++ : 0;
 		if (line[i] == '\n' && line[i - 1] == '\n' && line[i + 1] == '\n')
-			return (1);
+			return (-1);
 		if (line[i] == '\n' && line[i + 1] != '\n')
 			j++;
 		else if ((line[i] == '\n' && line[i + 1] == '\n') || !line[i + 2])
 		{
 			if (hash != 4 || j != 4)
-				return (1);
+				return (-1);
 			j = 0;
 			hash = 0;
 		}
 		if (line[i] != '\n')
 			k++;
 		else if ((k != 4 && k != 0) || (k = 0))
-			return (1);
+			return (-1);
 		i++;
 	}
 	return (0);
@@ -69,11 +70,11 @@ int		ft_verifline(char *line)
 	hash = 0;
 	len = ft_strlen(line);
 	if (len > 545)
-		return (1);
+		return (-1);
 	j = 1;
 	k = 0;
 	if (ft_verifstuff(line, j, k, hash) != 0)
-		return (1);
+		return (-1);
 	return (0);
 }
 

@@ -6,7 +6,7 @@
 /*   By: mde-laga <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/01/12 14:51:10 by mde-laga          #+#    #+#             */
-/*   Updated: 2019/01/15 16:54:46 by mde-laga         ###   ########.fr       */
+/*   Updated: 2019/01/16 16:43:33 by mde-laga         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,16 +19,14 @@ int		main(int ac, char **av)
 	char	**tab;
 	int		i;
 	char	*square;
-	char	letter;
 
 	(void)ac;
-	letter = 'A';
 	line = NULL;
 	fd = open(av[1], O_RDONLY);
 	if (!line && (!(line = ft_strnew(1))))
 		return (0);
 	line = ft_getline(fd, line);
-	if (ft_verifline(line) != 0)
+	if (ft_verifline(line) == -1)
 	{
 		ft_putstr("error");
 		return (0);
@@ -50,7 +48,9 @@ int		main(int ac, char **av)
 	}
 	ft_upleft(tab);
 	ft_letters(tab);
+	ft_move_down(tab[1], 1, 4);
 	tab = ft_delret(tab, 3);
+	ft_del_piece(tab[2], 2);
 	i = 0;
 	while (tab[i])
 		printf("Piece:\n%s\n\n", tab[i++]);
@@ -63,5 +63,6 @@ int		main(int ac, char **av)
 	while (i >= 0)
 		ft_strdel(&tab[i--]);
 	free(tab);
+	free(square);
 	return (0);
 }
