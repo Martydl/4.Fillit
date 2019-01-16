@@ -1,0 +1,15 @@
+1. Read and put pieces in array DONE
+2. Check valid pieces DONE
+3. Upleft DONE
+4. Replace "#" with letters DONE
+5. Makefile DONE
+6. Compute min square size DONE
+7. Code back fucking tracking X
+8. Make a real main X
+9. Check speed X
+
+Functions to code:
+-give smallest possible square from nb of pieces DONE (seems functionnal)
+-check if piece doesn't overlap at a given position DONE (not working yet)
+-try all possible positions for a pieces DONE (not tested)
+-backtracking function X
