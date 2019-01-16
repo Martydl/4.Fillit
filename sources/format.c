@@ -6,7 +6,7 @@
 /*   By: algautie <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/01/12 14:41:03 by algautie          #+#    #+#             */
-/*   Updated: 2019/01/15 17:07:10 by mde-laga         ###   ########.fr       */
+/*   Updated: 2019/01/16 12:31:01 by mde-laga         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -65,6 +65,23 @@ void	ft_upleft(char **tab)
 	}
 }
 
+#include <stdio.h>
+char	**ft_tab_new(char **tab_new, int nb_piece)
+{
+	int		i;
+
+	if (!(tab_new = (char**)malloc(sizeof(char*) * (nb_piece + 1))))
+		return (NULL);
+	i = 0;
+	while (i < nb_piece)
+	{
+		if (!(tab_new[i++] = (char*)malloc(sizeof(char) * 17)))
+			return (NULL);
+	}
+	tab_new[nb_piece] = NULL;
+	return (tab_new);
+}
+
 char	**ft_delret(char **tab, int nb_piece)
 {
 	char	**tab_new;
@@ -72,23 +89,24 @@ char	**ft_delret(char **tab, int nb_piece)
 	int		j;
 	int		k;
 
-	if (!(tab_new = (char**)malloc(sizeof(char) * nb_piece + 1)))
-		return (NULL);
-	tab_new[nb_piece + 1] = NULL;
+	tab_new = NULL;
+	tab_new = ft_tab_new(tab_new, nb_piece);
 	i = 0;
-	while (i <= nb_piece)
+	while (tab[i])
 	{
 		j = 0;
 		k = 0;
-		if (!(tab_new[i] = (char*)malloc(sizeof(char) * 17)))
-			return (NULL);
-		while (tab[i][k])
+		while (tab[i][j])
 		{
-			if (tab[i][k] != '\n')
-				tab_new[i][j++] = tab[i][k];
-			k++;
+			if (tab[i][j] != '\n')
+				tab_new[i][k++] = tab[i][j];
+			j++;
 		}
-		tab_new[i][j] = '\0';
+		tab_new[i][k++] = '\0';
+		i++;
 	}
+	while (i >= 0)
+		ft_strdel(&tab[i--]);
+	free(tab);
 	return (tab_new);
 }
