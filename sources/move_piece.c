@@ -6,7 +6,7 @@
 /*   By: mde-laga <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/01/15 15:24:34 by mde-laga          #+#    #+#             */
-/*   Updated: 2019/01/16 12:39:11 by mde-laga         ###   ########.fr       */
+/*   Updated: 2019/01/16 12:45:50 by mde-laga         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,6 +25,8 @@ void	ft_move_down(char *square, int piece, int size)
 			square[i + size] = square[i];
 			square[i] = '.';
 		}
+		else
+			break ;
 	}
 }
 
