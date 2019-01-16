@@ -3,7 +3,7 @@
 3. Upleft DONE
 4. Replace "#" with letters DONE
 5. Makefile DONE
-6. Compute min square size DONE (not tested)
+6. Compute min square size DONE
 7. Code back fucking tracking X
 8. Make a real main X
 9. Check speed X
