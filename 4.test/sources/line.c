@@ -6,7 +6,7 @@
 /*   By: mde-laga <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/12/10 13:43:52 by mde-laga          #+#    #+#             */
-/*   Updated: 2019/01/16 18:30:14 by mde-laga         ###   ########.fr       */
+/*   Updated: 2019/01/17 13:02:38 by mde-laga         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -94,11 +94,13 @@ t_piece	*ft_cutline(char *line, t_piece *list)
 	size = ft_strlen(line);
 	while (i + 18 < size)
 	{
-		if (!(list[j++].piece = ft_strsub(line, i, 19)))
+		if (!(list[j].piece = ft_strsub(line, i, 19)) || !(list[j].type = (int*)malloc(sizeof(int) * 1)))
 			return (NULL);
 		i += 21;
+		j++;
 	}
 	list[j].piece = NULL;
+	list[j].type = NULL;
 	return (list);
 }
 

@@ -6,7 +6,7 @@
 /*   By: mde-laga <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/12/10 13:06:22 by mde-laga          #+#    #+#             */
-/*   Updated: 2019/01/16 19:47:05 by mde-laga         ###   ########.fr       */
+/*   Updated: 2019/01/17 13:16:57 by mde-laga         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,7 +24,7 @@
 typedef struct	s_piece
 {
 	char	*piece;
-	int	*type;
+	int		*type;
 }				t_piece;
 
 char	*ft_getline(int fd, char *line);
@@ -39,6 +39,6 @@ int		ft_backtrack(char *square, char **tab, char letter);
 void	ft_move_down(char *square, int piece, int size);
 void	ft_move_up(char *square, int piece, int size);
 void	ft_del_piece(char *square, int piece);
-void	ft_delret(char *piece);
+char	*ft_delret(char *piece);
 
 #endif
