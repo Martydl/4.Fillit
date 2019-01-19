@@ -6,7 +6,7 @@
 /*   By: mde-laga <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/01/17 13:20:40 by mde-laga          #+#    #+#             */
-/*   Updated: 2019/01/19 18:21:52 by mde-laga         ###   ########.fr       */
+/*   Updated: 2019/01/19 20:33:44 by mde-laga         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -70,6 +70,8 @@ int		main(int ac, char **av)
 	char	**tab;
 	int		**list;
 	char	*square;
+	int		nb;
+	int		size;
 
 	(void)ac;
 	fd = open(av[1], O_RDONLY);
@@ -79,20 +81,20 @@ int		main(int ac, char **av)
 	list = NULL;
 	list = ft_formatlist(list, tab);
 
+	nb = 0;
+	while (list[nb])
+		nb++;
+	size = ft_smallest_square(nb);
 	square = NULL;
-	square = ft_create_square(square, 4);
-	puts(square);
-
-
+	square = ft_create_square(square, size);
+	ft_upleft(list, size);
+	printf("%d\n", size);
+//	ft_convert_coor(list, 4, size);
 
 
 	int z = -1;
 	while (list[++z])
 		printf("Pos = %d ; %d ; %d ; %d\n\n", list[z][0], list[z][1], list[z][2], list[z][3]);
-
-/*	square = ft_create_square(list);
-	dprintf(1, "\n%s\n\n", square);
-	ft_freetab(list);*/
 
 	return (0);
 }
