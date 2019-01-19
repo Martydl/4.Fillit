@@ -6,7 +6,7 @@
 /*   By: mde-laga <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/01/17 13:20:40 by mde-laga          #+#    #+#             */
-/*   Updated: 2019/01/17 16:57:24 by mde-laga         ###   ########.fr       */
+/*   Updated: 2019/01/19 14:27:59 by algautie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -69,8 +69,9 @@ int		main(int ac, char **av)
 	char	*line;
 	char	**tab;
 	int		**list;
-	char	*square;
+//	char	*square;
 
+	(void)ac;
 	fd = open(av[1], O_RDONLY);
 	line = NULL;
 	tab = NULL;

@@ -6,7 +6,7 @@
 /*   By: algautie <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/01/13 17:39:45 by algautie          #+#    #+#             */
-/*   Updated: 2019/01/17 14:27:47 by mde-laga         ###   ########.fr       */
+/*   Updated: 2019/01/19 14:28:48 by algautie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -72,7 +72,7 @@ int		ft_fit(char *square, char *piece, int size)
 	return (1);
 }
 
-char	*ft_create_square(t_piece *list)
+/*char	*ft_create_square(int **list)
 {
 	int		nb_pieces;
 	int		size;
@@ -91,7 +91,7 @@ char	*ft_create_square(t_piece *list)
 		square[i] = '.';
 //	dprintf(1, "ft_check_position ret = %d\n", ft_check_position(square, tab[3], size, 1));
 	return (square);
-}
+}*/
 
 /*int		ft_backtrack(char *square, char **tab, char letter)
 {
