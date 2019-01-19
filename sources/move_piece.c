@@ -6,7 +6,7 @@
 /*   By: algautie <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/01/19 13:50:52 by algautie          #+#    #+#             */
-/*   Updated: 2019/01/19 16:29:46 by algautie         ###   ########.fr       */
+/*   Updated: 2019/01/19 17:11:06 by mde-laga         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -64,9 +64,11 @@ int		ft_down1left(int *tetri, int size)
 	int i;
 
 	i = -1;
-	while (tetri[++i])
-		if(i + size > 15)
+	while (tetri[++i] >= 0)
+	{
+		if(tetri[i] + size > 15)
 			return (-1);
+	}
 	while (--i >= 0)
 		tetri[i] += size;
 	while (ft_up_or_left(tetri, size, 1))
@@ -74,16 +76,16 @@ int		ft_down1left(int *tetri, int size)
 	return (0);
 }
 
-int		ft_right1(int *tetri, int size)
+int		ft_next(int *tetri, int size)
 {
 	int i;
 
 	i = -1;
 	while (tetri[++i] >= 0)
 	{
-		if (i + 1 > 15)
+		if (tetri[i] == 15)
 			return (-1);
-		if (tetri[i] + 1 % size == 0)
+		if ((tetri[i] + 1) % size == 0)
 		{
 			if (ft_down1left(tetri, size) == 0)
 				return (0);

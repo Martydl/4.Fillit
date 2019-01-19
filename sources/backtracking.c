@@ -6,7 +6,7 @@
 /*   By: algautie <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/01/13 17:39:45 by algautie          #+#    #+#             */
-/*   Updated: 2019/01/19 14:54:53 by mde-laga         ###   ########.fr       */
+/*   Updated: 2019/01/19 18:23:09 by mde-laga         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,6 +38,20 @@ int		ft_smallest_square(int nb)
 	return (size);
 }
 
+char	*ft_create_square(char *square, int size)
+{
+	int i;
+
+	ft_strdel(&square);
+	if (!(square = (char*)malloc(sizeof(char) * (size * size + 1))))
+		return (NULL);
+	i = -1;
+	while (++i != size * size)
+		square[i] = '.';
+	square[i] = '\0';
+	return (square);
+}
+
 void	ft_del_tetri(char *square, int letter)
 {
 	int i;
@@ -48,62 +62,24 @@ void	ft_del_tetri(char *square, int letter)
 			square[i] = '.';
 }
 
-/*int		ft_check_position(char *square, char *piece, int size, int pos)
+int		ft_check(char *square, int *tetri, int size)
 {
-	int		i;
-	int		line;
+	int i;
 
-	line = 0;
-	(void)pos;
-	while (line != 4)
-	{
-		i = -1;
-		dprintf(1, "\nline value is : %d\n", line);
-		while (++i != 4)
-			if ((line * size - pos < line * 4) || (piece[line * 5  + i] != '.'
-						&& square[line * size + i] != '.'))
-				return (0);
-		line++;
-	}
-	return (1);
-}*/
-
-/*int		ft_fit(char *square, char *piece, int size)
-{
-	int		pos;
-
-	pos = 0;
-	while (!(ft_check_position(square, piece, size, pos)))
-	{
-		pos++;
-		if (square[pos] == '\0')
-			return (0);
-	}
-	return (1);
-}*/
-
-/*char	*ft_create_square(int **list)
-{
-	int		nb_pieces;
-	int		size;
-	char	*square;
-	int		i;
-
-	nb_pieces = 0;
-	while (list[nb_pieces].piece != NULL)
-		nb_pieces++;
-	size = ft_smallest_square(nb_pieces);
-	if (!(square = (char*)malloc(sizeof(char) * size * size + 1)))
-		return (NULL);
-	square[size * size] = '\0';
 	i = -1;
-	while (++i != size * size)
-		square[i] = '.';
-//	dprintf(1, "ft_check_position ret = %d\n", ft_check_position(square, tab[3], size, 1));
-	return (square);
-}*/
+	while (tetri[++i] != -1)
+		if (square[tetri[i]] != '.')
+		{
+			if (ft_next(tetri, size) == -1)
+				return (-1);
+			if (ft_check(square, tetri, size) == -1)
+				return (-1);
+		}
+	return (0);
+}
 
-/*int		ft_backtrack(char *square, char **tab, char letter)
+
+int		ft_backtrack(char *square, char **tab)
 {
 	return (0);
-}*/
+}
