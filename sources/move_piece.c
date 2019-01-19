@@ -3,62 +3,25 @@
 /*                                                        :::      ::::::::   */
 /*   move_piece.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mde-laga <marvin@42.fr>                    +#+  +:+       +#+        */
+/*   By: algautie <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2019/01/15 15:24:34 by mde-laga          #+#    #+#             */
-/*   Updated: 2019/01/17 14:33:34 by mde-laga         ###   ########.fr       */
+/*   Created: 2019/01/19 13:50:52 by algautie          #+#    #+#             */
+/*   Updated: 2019/01/19 14:14:40 by algautie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "fillit.h"
 
-#include <stdio.h>
-
-int		ft_move_down(char *square, int piece, int size)
+void	ft_convert_coor(int **list, int from, int to)
 {
 	int i;
-
-	i = size * size;
-	while (square[--i])
-	{
-		if (square[i] == 'A' + piece && square[i + size])
-		{
-			square[i + size] = square[i];
-			square[i] = '.';
-		}
-		else
-			return (-1);
-	}
-	return (0);
-}
-
-void	ft_move_up(char *square, int piece, int size)
-{
-	int i;
-
-	i = 0;
-	while (square[++i])
-	{
-		if (square[i] == 'A' + piece && square[i - size])
-		{
-			square[i - size] = square[i];
-			square[i] = '.';
-		}
-		else
-			break ;
-	}
-}
-
-void	ft_move_left(char *square, int piece, int size)
-{
-}
-
-void	ft_del_piece(char *square, int piece)
-{
-	int i;
+	int j;
 
 	i = -1;
-	while (square[++i])
-		if (square[i] == 'A' + piece)
-			square[i] = '.';
+	while (list[++i] != NULL)
+	{
+		j = -1;
+		while (++j != 4)
+			list[i][j] = list[i][j] + ((list[i][j] / from) * (to - from));
+	}
 }
