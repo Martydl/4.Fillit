@@ -6,7 +6,7 @@
 /*   By: mde-laga <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/12/10 13:06:22 by mde-laga          #+#    #+#             */
-/*   Updated: 2019/01/19 14:15:08 by mde-laga         ###   ########.fr       */
+/*   Updated: 2019/01/19 14:53:35 by mde-laga         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,6 +38,6 @@ int		ft_backtrack(char *square, char **tab, char letter);
 int		ft_smallest_square(int nb);
 char	*ft_create_square(int **list);
 void	ft_upleft(int *tetri);
-void	ft_del_piece(char *square, int letter);
+void	ft_del_tetri(char *square, int letter);
 
 #endif
