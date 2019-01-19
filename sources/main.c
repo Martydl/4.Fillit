@@ -1,18 +1,18 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   main.c                                             :+:      :+:    :+:   */
+/*   main_final.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: mde-laga <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2019/01/12 14:51:10 by mde-laga          #+#    #+#             */
-/*   Updated: 2019/01/17 13:39:19 by mde-laga         ###   ########.fr       */
+/*   Created: 2019/01/17 13:20:40 by mde-laga          #+#    #+#             */
+/*   Updated: 2019/01/17 16:57:24 by mde-laga         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "fillit.h"
-#include <stdio.h>
-void	ft_error()
+
+void	ft_error(void)
 {
 	ft_putstr("error\n");
 	exit(-1);
@@ -34,50 +34,57 @@ void	ft_freetab(t_piece *tab)
 	free(tab);
 }
 
+char	**ft_getlist(char *line, char **tab, int fd)
+{
+	if (!line && (!(line = ft_strnew(1))))
+		return (NULL);
+	line = ft_getline(fd, line);
+	if (ft_verifline(line) == -1)
+		ft_error();
+	tab = ft_cutline(line, tab);
+	ft_strdel(&line);
+	return (tab);
+}
+
+int		**ft_formatlist(int **list, char **tab)
+{
+	int i;
+
+	i = -1;
+	while (tab[++i])
+	{
+		if (ft_check_neighbours(tab[i]) == -1)
+			ft_error();
+		tab[i] = ft_delret(tab[i]);
+	}
+	list = ft_create_list(list, tab);
+	return(list);
+}
+
+#include <stdio.h>
+
 int		main(int ac, char **av)
 {
 	int		fd;
 	char	*line;
-	t_piece	*list;
-	int		i;
-//	char	*square;
+	char	**tab;
+	int		**list;
+	char	*square;
 
-	(void)ac;
-	line = NULL;
 	fd = open(av[1], O_RDONLY);
-	if (!line && (!(line = ft_strnew(1))))
-		return (0);
-	line = ft_getline(fd, line);
-	if (ft_verifline(line) == -1)
-	{
-		ft_putstr("error");
-		return (0);
-	}
+	line = NULL;
+	tab = NULL;
+	tab= ft_getlist(line, tab, fd);
 	list = NULL;
-	list = ft_cutline(line, list);
-	ft_strdel(&line);
-	i = 0;
-	while (list[i].piece != NULL)
-	{
-		if (ft_check_neighbours(list[i].piece) == -1)
-			ft_error();
-		ft_upleft(list[i]);
-		ft_letters(list[i], i);
-		list[i].piece = ft_delret(list[i].piece);
-		i++;
-	}
-//	ft_move_down(tab[1], 1, 4);
-//	ft_del_piece(tab[2], 2);
-	i = -1;
-	while (list[++i].piece != NULL)
-		printf("type: %c\n%s\n\n", *list[i].type, list[i].piece);
-	ft_freetab(list);
-/*	if (!(square = ft_create_square(tab)))
-	{
-		ft_putstr("error");
-		return (0);
-	}
-	printf("square len = %ld\n", ft_strlen(square));
-	free(square);*/
+	list = ft_formatlist(list, tab);
+
+	int z = -1;
+	while (list[++z])
+		printf("Pos = %d ; %d ; %d ; %d\n\n", list[z][0], list[z][1], list[z][2], list[z][3]);
+
+/*	square = ft_create_square(list);
+	dprintf(1, "\n%s\n\n", square);
+	ft_freetab(list);*/
+
 	return (0);
 }
