@@ -6,7 +6,7 @@
 /*   By: mde-laga <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/01/17 13:20:40 by mde-laga          #+#    #+#             */
-/*   Updated: 2019/01/19 14:27:59 by algautie         ###   ########.fr       */
+/*   Updated: 2019/01/19 15:33:12 by mde-laga         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -80,7 +80,7 @@ int		main(int ac, char **av)
 	list = ft_formatlist(list, tab);
 
 	int z = -1;
-	while (list[++z])
+	while (list[++z] >= 0)
 		printf("Pos = %d ; %d ; %d ; %d\n\n", list[z][0], list[z][1], list[z][2], list[z][3]);
 
 /*	square = ft_create_square(list);
