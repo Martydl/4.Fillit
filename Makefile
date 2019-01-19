@@ -8,26 +8,25 @@ SRC = 	sources/line.c \
 		sources/format.c \
 		sources/main.c \
 		sources/backtracking.c \
-		sources/move_piece.c\
+		sources/move_piece.c \
+		sources/lib1.c \
+		sources/lib2.c \
 
 OBJ = $(SRC:.c=.o)
 
-LIBPATH = libft/libft.a
-
-.PHONY: all re clean fclean
+all: $(NAME)
 
 $(NAME):
-	@cd libft; $(MAKE) -f Makefile
 	@make $(OBJ)
-	@$(CC) $(CFLAGS) -o $(NAME) $(OBJ) $(LIBPATH)
+	@$(CC) $(CFLAGS) -o $(NAME) $(OBJ)
 
-all: $(NAME)
 
 re: fclean all
 
 clean:
-	@cd libft; $(MAKE) -f Makefile clean
 	@rm -rf $(OBJ)
 
 fclean: clean
-	@rm -rf $(NAME) $(LIBPATH)
+	@rm -f $(NAME)
+
+.PHONY: all re clean fclean
