@@ -6,7 +6,7 @@
 /*   By: algautie <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/01/13 17:39:45 by algautie          #+#    #+#             */
-/*   Updated: 2019/01/16 15:05:06 by mde-laga         ###   ########.fr       */
+/*   Updated: 2019/01/17 14:27:47 by mde-laga         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -72,7 +72,7 @@ int		ft_fit(char *square, char *piece, int size)
 	return (1);
 }
 
-char	*ft_create_square(char **tab)
+char	*ft_create_square(t_piece *list)
 {
 	int		nb_pieces;
 	int		size;
@@ -80,7 +80,7 @@ char	*ft_create_square(char **tab)
 	int		i;
 
 	nb_pieces = 0;
-	while (tab[nb_pieces] != NULL)
+	while (list[nb_pieces].piece != NULL)
 		nb_pieces++;
 	size = ft_smallest_square(nb_pieces);
 	if (!(square = (char*)malloc(sizeof(char) * size * size + 1)))
@@ -89,9 +89,6 @@ char	*ft_create_square(char **tab)
 	i = -1;
 	while (++i != size * size)
 		square[i] = '.';
-	dprintf(1, "i: %d\n" , i);
-	dprintf(1, "size: %d\n" , size);
-	dprintf(1, "\n%s\n\n", square);
 //	dprintf(1, "ft_check_position ret = %d\n", ft_check_position(square, tab[3], size, 1));
 	return (square);
 }

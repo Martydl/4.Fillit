@@ -6,13 +6,13 @@
 /*   By: algautie <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/01/12 14:41:03 by algautie          #+#    #+#             */
-/*   Updated: 2019/01/16 15:03:48 by mde-laga         ###   ########.fr       */
+/*   Updated: 2019/01/17 17:11:19 by mde-laga         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "fillit.h"
 
-int		ft_up_or_left(char *l, int sp, int dec)
+/*int		ft_up_or_left(char *l, int sp, int dec)
 {
 	int i;
 
@@ -31,81 +31,83 @@ int		ft_up_or_left(char *l, int sp, int dec)
 	return (1);
 }
 
-void	ft_upleft(char **tab)
+void	ft_upleft(int *tetri)
+{
+	while (ft_up_or_left(tetri.piece, 1, 5))
+		;
+	while (ft_up_or_left(tetri.piece, 5, 1))
+		;
+}*/
+
+/*void	ft_letters(t_piece tetri, int pos)
 {
 	int i;
 
 	i = 0;
-	while (tab[i] != NULL)
+	while (tetri.piece[i])
 	{
-		while (ft_up_or_left(tab[i], 1, 5))
-			;
-		while (ft_up_or_left(tab[i], 5, 1))
-			;
+		if (tetri.piece[i] == '#')
+			tetri.piece[i] = 'A' + pos;
 		i++;
 	}
+	*tetri.type = 'A' + pos;
+}*/
+
+char	*ft_delret(char *piece)
+{
+	char	*tmp;
+	int		i;
+	int		j;
+
+	tmp = ft_strdup(piece);
+	ft_strdel(&piece);
+	if (!(piece = (char*)malloc(sizeof(char) * 17)))
+		return (NULL);
+	i = 0;
+	j = 0;
+	while (tmp[i])
+	{
+		if (tmp[i] != '\n')
+			piece[j++] = tmp[i];
+		i++;
+	}
+	piece[j] = '\0';
+	ft_strdel(&tmp);
+	return (piece);
 }
 
-void	ft_letters(char **tab)
+int		*ft_convert_tetri(int *tetri, char *piece)
 {
 	int i;
 	int j;
 
+	i = -1;
 	j = 0;
-	while (tab[j])
-	{
-		i = 0;
-		while (tab[j][i])
-		{
-			if (tab[j][i] == '#')
-				tab[j][i] = 'A' + j;
-			i++;
-		}
-		j++;
-	}
+	while (piece[++i])
+		if (piece[i] == '#')
+			tetri[j++] = i;
+	tetri[j] = 0;
+	ft_strdel(&piece);
+	return (tetri);
 }
 
-char	**ft_tab_new(char **tab_new, int nb_piece)
+int		**ft_create_list(int **list, char **tab)
 {
-	int		i;
+	int	i;
 
-	if (!(tab_new = (char**)malloc(sizeof(char*) * (nb_piece + 1))))
-		return (NULL);
-	i = 0;
-	while (i < nb_piece)
-	{
-		if (!(tab_new[i++] = (char*)malloc(sizeof(char) * 17)))
-			return (NULL);
-	}
-	tab_new[nb_piece] = NULL;
-	return (tab_new);
-}
-
-char	**ft_delret(char **tab, int nb_piece)
-{
-	char	**tab_new;
-	int		i;
-	int		j;
-	int		k;
-
-	tab_new = NULL;
-	tab_new = ft_tab_new(tab_new, nb_piece);
 	i = 0;
 	while (tab[i])
-	{
-		j = 0;
-		k = 0;
-		while (tab[i][j])
-		{
-			if (tab[i][j] != '\n')
-				tab_new[i][k++] = tab[i][j];
-			j++;
-		}
-		tab_new[i][k++] = '\0';
 		i++;
+	if (!(list = (int**)malloc(sizeof(int*) * (i + 1))))
+		return (NULL);
+	list[i] = NULL;
+	while (--i >= 0)
+	{
+		if (!(list[i] = (int*)malloc(sizeof(int) * 5)))
+			return (NULL);
 	}
-	while (i >= 0)
-		ft_strdel(&tab[i--]);
+	while (tab[++i])
+		list[i] = ft_convert_tetri(list[i], tab[i]);
 	free(tab);
-	return (tab_new);
+	return (list);
 }

@@ -1,7 +1,0 @@
-{
-size 4
-create sq
-convert size -> error convert
-tests
-upleft
-} ++

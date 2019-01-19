@@ -6,7 +6,7 @@
 /*   By: mde-laga <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/12/10 13:43:52 by mde-laga          #+#    #+#             */
-/*   Updated: 2019/01/16 16:39:19 by mde-laga         ###   ########.fr       */
+/*   Updated: 2019/01/17 16:03:51 by mde-laga         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,8 +21,7 @@ char	*ft_getline(int fd, char *line)
 	while ((ret = read(fd, buf, BUFF_SIZE)) > 0)
 	{
 		buf[ret] = '\0';
-		tmp = ft_strdup(line);
-		ft_strdel(&line);
+		tmp = line;
 		if (!(line = ft_strjoin(tmp, buf)))
 			return (0);
 		ft_strdel(&tmp);
@@ -92,11 +91,13 @@ char	**ft_cutline(char *line, char **tab)
 		return (NULL);
 	i = 0;
 	j = 0;
-	while (line[i] && line[i + 18])
+	size = ft_strlen(line);
+	while (i + 18 < size)
 	{
-		if (!(tab[j++] = ft_strsub(line, i, 19)))
+		if (!(tab[j] = ft_strsub(line, i, 19)))
 			return (NULL);
 		i += 21;
+		j++;
 	}
 	tab[j] = NULL;
 	return (tab);
