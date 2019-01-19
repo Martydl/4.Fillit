@@ -6,7 +6,7 @@
 /*   By: algautie <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/01/12 14:41:03 by algautie          #+#    #+#             */
-/*   Updated: 2019/01/17 17:11:19 by mde-laga         ###   ########.fr       */
+/*   Updated: 2019/01/19 15:32:44 by mde-laga         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -86,7 +86,7 @@ int		*ft_convert_tetri(int *tetri, char *piece)
 	while (piece[++i])
 		if (piece[i] == '#')
 			tetri[j++] = i;
-	tetri[j] = 0;
+	tetri[j] = -1;
 	ft_strdel(&piece);
 	return (tetri);
 }
