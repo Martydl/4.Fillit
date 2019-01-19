@@ -6,7 +6,7 @@
 /*   By: mde-laga <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/12/10 13:06:22 by mde-laga          #+#    #+#             */
-/*   Updated: 2019/01/17 13:16:57 by mde-laga         ###   ########.fr       */
+/*   Updated: 2019/01/17 14:33:26 by mde-laga         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,9 +34,9 @@ int		ft_check_neighbours(char *piece);
 void	ft_upleft(t_piece tetri);
 void	ft_letters(t_piece tetri, int pos);
 int		ft_smallest_square(int nb);
-char	*ft_create_square(char **tab);
+char	*ft_create_square(t_piece *list);
 int		ft_backtrack(char *square, char **tab, char letter);
-void	ft_move_down(char *square, int piece, int size);
+int		ft_move_down(char *square, int piece, int size);
 void	ft_move_up(char *square, int piece, int size);
 void	ft_del_piece(char *square, int piece);
 char	*ft_delret(char *piece);

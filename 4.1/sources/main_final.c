@@ -6,7 +6,7 @@
 /*   By: mde-laga <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/01/17 13:20:40 by mde-laga          #+#    #+#             */
-/*   Updated: 2019/01/17 13:40:47 by mde-laga         ###   ########.fr       */
+/*   Updated: 2019/01/17 14:27:09 by mde-laga         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -67,6 +67,7 @@ int		main(int ac, char **av)
 {
 	int		fd;
 	char	*line;
+	char	*square;
 	t_piece	*list;
 
 	fd = open(av[1], O_RDONLY);
@@ -80,6 +81,8 @@ int		main(int ac, char **av)
 	while (list[++z].piece)
 		printf("type: %c\n%s\n\n", *list[z].type, list[z].piece);
 
+	square = ft_create_square(list);
+	dprintf(1, "\n%s\n\n", square);
 	ft_freetab(list);
 
 	return (0);
