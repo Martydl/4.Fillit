@@ -6,7 +6,7 @@
 /*   By: algautie <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/01/13 17:39:45 by algautie          #+#    #+#             */
-/*   Updated: 2019/01/19 14:28:48 by algautie         ###   ########.fr       */
+/*   Updated: 2019/01/19 14:54:53 by mde-laga         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,7 +38,17 @@ int		ft_smallest_square(int nb)
 	return (size);
 }
 
-int		ft_check_position(char *square, char *piece, int size, int pos)
+void	ft_del_tetri(char *square, int letter)
+{
+	int i;
+
+	i = -1;
+	while (square[++i])
+		if (square[i] == 'A' + letter)
+			square[i] = '.';
+}
+
+/*int		ft_check_position(char *square, char *piece, int size, int pos)
 {
 	int		i;
 	int		line;
@@ -50,15 +60,15 @@ int		ft_check_position(char *square, char *piece, int size, int pos)
 		i = -1;
 		dprintf(1, "\nline value is : %d\n", line);
 		while (++i != 4)
-			if (/*(line * size - pos < line * 4) || */(piece[line * 5  + i] != '.'
+			if ((line * size - pos < line * 4) || (piece[line * 5  + i] != '.'
 						&& square[line * size + i] != '.'))
 				return (0);
 		line++;
 	}
 	return (1);
-}
+}*/
 
-int		ft_fit(char *square, char *piece, int size)
+/*int		ft_fit(char *square, char *piece, int size)
 {
 	int		pos;
 
@@ -70,7 +80,7 @@ int		ft_fit(char *square, char *piece, int size)
 			return (0);
 	}
 	return (1);
-}
+}*/
 
 /*char	*ft_create_square(int **list)
 {
