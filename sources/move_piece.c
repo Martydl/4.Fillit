@@ -6,7 +6,7 @@
 /*   By: algautie <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/01/19 13:50:52 by algautie          #+#    #+#             */
-/*   Updated: 2019/01/19 17:11:06 by mde-laga         ###   ########.fr       */
+/*   Updated: 2019/01/20 13:51:16 by mde-laga         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,14 +29,20 @@ void	ft_convert_coor(int **list, int from, int to)
 int		ft_up_or_left(int *p, int sp, int dec)
 {
 	int i;
+	int j;
 	int tmp;
 
 	i = 0;
 	while (i < sp || i < dec)
 	{
 		tmp = i * sp;
-		if (tmp == p[0] || tmp == p[1] || tmp == p[2] || tmp == p[3])
-			return (0);
+		j = 0;
+		while (j < sp || j < dec)
+		{
+			if (p[j] == tmp)
+				return (0);
+			j++;
+		}
 		i++;
 	}
 	i = -1;
@@ -45,7 +51,7 @@ int		ft_up_or_left(int *p, int sp, int dec)
 	return (1);
 }
 
-void	ft_upleft(int **list, int size)
+void	ft_upleft_all(int **list, int size)
 {
 	int i;
 
@@ -59,6 +65,14 @@ void	ft_upleft(int **list, int size)
 	}
 }
 
+void	ft_upleft(int *tetri, int size)
+{
+	while (ft_up_or_left(tetri, 1, size))
+		;
+	while (ft_up_or_left(tetri, size, 1))
+		;
+}
+
 int		ft_down1left(int *tetri, int size)
 {
 	int i;
@@ -66,14 +80,14 @@ int		ft_down1left(int *tetri, int size)
 	i = -1;
 	while (tetri[++i] >= 0)
 	{
-		if(tetri[i] + size > 15)
+		if(tetri[i] + size >= size * size)
 			return (-1);
 	}
 	while (--i >= 0)
 		tetri[i] += size;
-	while (ft_up_or_left(tetri, size, 1))
+	while (ft_up_or_left(tetri, size, 1 ))
 		;
-	return (0);
+	return (1);
 }
 
 int		ft_next(int *tetri, int size)
@@ -83,17 +97,17 @@ int		ft_next(int *tetri, int size)
 	i = -1;
 	while (tetri[++i] >= 0)
 	{
-		if (tetri[i] == 15)
+		if (tetri[i] + 1 >= size * size)
 			return (-1);
 		if ((tetri[i] + 1) % size == 0)
 		{
-			if (ft_down1left(tetri, size) == 0)
-				return (0);
+			if (ft_down1left(tetri, size) == 1)
+				return (1);
 			else
 				return (-1);
 		}
 	}
 	while (--i >= 0)
 		tetri[i] += 1;
-	return (0);
+	return (1);
 }

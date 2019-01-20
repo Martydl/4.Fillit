@@ -6,7 +6,7 @@
 /*   By: mde-laga <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/01/19 18:28:24 by mde-laga          #+#    #+#             */
-/*   Updated: 2019/01/19 19:43:53 by mde-laga         ###   ########.fr       */
+/*   Updated: 2019/01/20 13:05:33 by mde-laga         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,8 +37,9 @@ int		**ft_create_list(int **list, char **tab);
 int		ft_backtrack(char *square, int **list, int from, int size);
 int		ft_smallest_square(int nb_tetri);
 char	*ft_create_square(char *square, int size);
-int		ft_check(char *square, int *tetri, int size, int letter);
-void	ft_upleft(int **list, int size);
+int		ft_check(char *square, int *tetri, int letter);
+void	ft_upleft(int *tetri, int size);
+void	ft_upleft_all(int **list, int size);
 int		ft_next(int *tetri, int size);
 void	ft_del_tetri(char *square, int letter);
 void	ft_convert_coor(int **list, int from, int to);

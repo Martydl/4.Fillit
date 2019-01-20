@@ -6,7 +6,7 @@
 /*   By: algautie <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/01/13 17:39:45 by algautie          #+#    #+#             */
-/*   Updated: 2019/01/20 11:34:56 by mde-laga         ###   ########.fr       */
+/*   Updated: 2019/01/20 14:19:04 by mde-laga         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,7 +42,7 @@ char	*ft_create_square(char *square, int size)
 {
 	int i;
 
-	ft_strdel(&square);
+	//	ft_strdel(&square);
 	if (!(square = (char*)malloc(sizeof(char) * (size * size + 1))))
 		return (NULL);
 	i = -1;
@@ -62,20 +62,51 @@ void	ft_del_tetri(char *square, int letter)
 			square[i] = '.';
 }
 
-int		ft_check(char *square, int *tetri, int size, int letter)
+int		ft_check(char *square, int *tetri, int letter)
 {
 	int i;
 
 	i = -1;
 	while (tetri[++i] != -1)
 		if (square[tetri[i]] != '.')
-		{
-			if (ft_next(tetri, size) == -1)
-				return (-1);
-			if (ft_check(square, tetri, size, letter) == -1)
-				return (-1);
-		}
+			return (0);
 	while (--i >= 0)
 		square[tetri[i]] = 'A' + letter;
 	return (1);
+}
+
+int		ft_backtrack(char *square, int **list, int size, int nb)
+{
+	static int	z = 0;
+	int			back;
+
+	dprintf(1, "%d\n\n", z);
+	if (z == nb)
+		return (1);
+	back = 0;
+	while (z != -1)
+	{
+		if (back == 0 || (back == 1 && ft_next(list[z], size) == 1 && (back = 0)))
+		{
+			if (ft_check(square, list[z], z) == 1)
+			{
+				z++;
+				if (ft_backtrack(square, list, size, nb) == 1)
+					return (1);
+			}
+		}
+		else if (ft_next(list[z], size) == -1)
+		{
+			ft_upleft(list[z], size);
+			z--;
+			ft_del_tetri(square, z);
+			back = 1;
+		}
+	}
+	z = 0;
+	ft_upleft_all(list, size);
+	ft_convert_coor(list, size, size + 1);
+	ft_create_square(square, ++size);
+	ft_backtrack(square, list, size, nb);
+	return (0);
 }
