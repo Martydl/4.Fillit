@@ -6,7 +6,7 @@
 /*   By: algautie <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/01/13 17:39:45 by algautie          #+#    #+#             */
-/*   Updated: 2019/01/20 14:19:04 by mde-laga         ###   ########.fr       */
+/*   Updated: 2019/01/20 14:57:49 by mde-laga         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -67,9 +67,10 @@ int		ft_check(char *square, int *tetri, int letter)
 	int i;
 
 	i = -1;
+//	puts(square);
 	while (tetri[++i] != -1)
 		if (square[tetri[i]] != '.')
-			return (0);
+			return (-1);
 	while (--i >= 0)
 		square[tetri[i]] = 'A' + letter;
 	return (1);
@@ -80,14 +81,16 @@ int		ft_backtrack(char *square, int **list, int size, int nb)
 	static int	z = 0;
 	int			back;
 
-	dprintf(1, "%d\n\n", z);
+	back = 0;
+	dprintf(1, "z = %d\n\n", z);
+	dprintf(1, "back = %d\n\n", back);
 	if (z == nb)
 		return (1);
-	back = 0;
 	while (z != -1)
 	{
 		if (back == 0 || (back == 1 && ft_next(list[z], size) == 1 && (back = 0)))
 		{
+		//dprintf(1, "%d ; %d ; %d ; %d\n\n", list[z][0], list[z][1], list[z][2], list[z][3]);
 			if (ft_check(square, list[z], z) == 1)
 			{
 				z++;
@@ -95,7 +98,7 @@ int		ft_backtrack(char *square, int **list, int size, int nb)
 					return (1);
 			}
 		}
-		else if (ft_next(list[z], size) == -1)
+		if (ft_next(list[z], size) == -1)
 		{
 			ft_upleft(list[z], size);
 			z--;

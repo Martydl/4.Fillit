@@ -6,7 +6,7 @@
 /*   By: mde-laga <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/01/20 14:25:50 by mde-laga          #+#    #+#             */
-/*   Updated: 2019/01/20 14:26:58 by mde-laga         ###   ########.fr       */
+/*   Updated: 2019/01/20 15:08:32 by mde-laga         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,7 +18,7 @@ void	ft_error(void)
 	exit(-1);
 }
 
-void	ft_freetab(t_piece *tab)
+/*void	ft_freetab(t_piece *tab)
 {
 	int i;
 
@@ -32,7 +32,7 @@ void	ft_freetab(t_piece *tab)
 		i--;
 	}
 	free(tab);
-}
+}*/
 
 char	**ft_getlist(char *line, char **tab, int fd)
 {
@@ -63,6 +63,20 @@ int		**ft_formatlist(int **list, char **tab)
 
 #include <stdio.h>
 
+void	ft_print_sq(char *square, int size)
+{
+	int i;
+
+	i = 0;
+	while (square[i] != '\0')
+	{
+		if (i % size == 0 && i != 0)
+			ft_putstr("\n");
+		write(1, &square[i], 1);
+		i++;
+	}
+}
+
 int		main(int ac, char **av)
 {
 	int		fd;
@@ -89,14 +103,13 @@ int		main(int ac, char **av)
 	square = ft_create_square(square, size);
 	ft_upleft_all(list, 4);
 	ft_convert_coor(list, 4, size);
-	dprintf(1, "%s\n\n", square);
-
-	ft_backtrack(square, list, size, nb);
-	dprintf(1, "%s\n\n", square);
 
 	int z = -1;
 	while (list[++z])
 		printf("Pos = %d ; %d ; %d ; %d\n\n", list[z][0], list[z][1], list[z][2], list[z][3]);
 
+	dprintf(1, "%s\n\n", square);
+	ft_backtrack(square, list, size, nb);
+	ft_print_sq(square, 6);
 	return (0);
 }
