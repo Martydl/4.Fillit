@@ -6,7 +6,7 @@
 /*   By: algautie <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/01/13 17:39:45 by algautie          #+#    #+#             */
-/*   Updated: 2019/01/20 14:57:49 by mde-laga         ###   ########.fr       */
+/*   Updated: 2019/01/20 16:12:50 by mde-laga         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -88,7 +88,7 @@ int		ft_backtrack(char *square, int **list, int size, int nb)
 		return (1);
 	while (z != -1)
 	{
-		if (back == 0 || (back == 1 && ft_next(list[z], size) == 1 && (back = 0)))
+		if (back == 0 || (back == 1 && ft_next(list[z], size) == 1))
 		{
 		//dprintf(1, "%d ; %d ; %d ; %d\n\n", list[z][0], list[z][1], list[z][2], list[z][3]);
 			if (ft_check(square, list[z], z) == 1)
