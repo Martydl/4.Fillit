@@ -6,7 +6,7 @@
 /*   By: mde-laga <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/12/10 13:43:52 by mde-laga          #+#    #+#             */
-/*   Updated: 2019/01/20 10:57:16 by mde-laga         ###   ########.fr       */
+/*   Updated: 2019/01/20 14:34:07 by mde-laga         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -59,7 +59,6 @@ int		ft_verifstuff(char *line, int j, int k, int hash)
 	return (1);
 }
 
-#include <stdio.h>
 int		ft_verifline(char *line)
 {
 	int j;

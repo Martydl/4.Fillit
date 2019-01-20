@@ -6,7 +6,7 @@
 /*   By: mde-laga <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/01/20 14:25:34 by mde-laga          #+#    #+#             */
-/*   Updated: 2019/01/20 14:25:39 by mde-laga         ###   ########.fr       */
+/*   Updated: 2019/01/20 14:31:32 by mde-laga         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,12 +20,6 @@
 # include <sys/uio.h>
 # include <fcntl.h>
 # include <stdlib.h>
-
-typedef struct	s_piece
-{
-	char	*piece;
-	int		*type;
-}				t_piece;
 
 void	ft_error(void);
 char	*ft_getline(int fd, char *line);
