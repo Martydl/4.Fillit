@@ -6,13 +6,13 @@
 /*   By: algautie <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/01/19 13:50:52 by algautie          #+#    #+#             */
-/*   Updated: 2019/01/20 12:45:15 by algautie         ###   ########.fr       */
+/*   Updated: 2019/01/20 13:12:13 by algautie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "fillit.h"
 
-void	ft_convert_coor(int **list, int from, int to)
+int		ft_convert_coor(int **list, int from, int to)
 {
 	int i;
 	int j;
@@ -22,8 +22,17 @@ void	ft_convert_coor(int **list, int from, int to)
 	{
 		j = -1;
 		while (++j != 4)
+			if (list[i][j] % from >= to || list[i][j] / from >= to)
+				return (-1);
+	}
+	i = -1;
+	while (list[++i] != NULL)
+	{
+		j = -1;
+		while (++j != 4)
 			list[i][j] = list[i][j] + ((list[i][j] / from) * (to - from));
 	}
+	return (1);
 }
 
 int		ft_up_or_left(int *p, int sp, int dec)
