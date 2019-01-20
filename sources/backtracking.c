@@ -6,7 +6,7 @@
 /*   By: algautie <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/01/13 17:39:45 by algautie          #+#    #+#             */
-/*   Updated: 2019/01/19 20:31:08 by mde-laga         ###   ########.fr       */
+/*   Updated: 2019/01/20 11:34:56 by mde-laga         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -79,5 +79,3 @@ int		ft_check(char *square, int *tetri, int size, int letter)
 		square[tetri[i]] = 'A' + letter;
 	return (1);
 }
-
-
