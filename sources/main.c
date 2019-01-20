@@ -6,7 +6,11 @@
 /*   By: mde-laga <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/01/17 13:20:40 by mde-laga          #+#    #+#             */
+<<<<<<< HEAD
 /*   Updated: 2019/01/20 14:15:34 by mde-laga         ###   ########.fr       */
+=======
+/*   Updated: 2019/01/20 12:57:29 by mde-laga         ###   ########.fr       */
+>>>>>>> b2ee379bf2ef2fb75fa8258e6b38e02464dc065e
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -87,12 +91,19 @@ int		main(int ac, char **av)
 	size = ft_smallest_square(nb);
 	square = NULL;
 	square = ft_create_square(square, size);
+<<<<<<< HEAD
 	ft_upleft_all(list, 4);
 	ft_convert_coor(list, 4, size);
 	dprintf(1, "%s\n\n", square);
 
 	ft_backtrack(square, list, size, nb);
 	dprintf(1, "%s\n\n", square);
+=======
+	puts(square);
+	puts("test");
+	ft_upleft_all(list, 4);
+	ft_convert_coor(list, 4, size);
+>>>>>>> b2ee379bf2ef2fb75fa8258e6b38e02464dc065e
 
 	int z = -1;
 	while (list[++z])
