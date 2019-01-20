@@ -6,7 +6,7 @@
 /*   By: mde-laga <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/01/17 13:20:40 by mde-laga          #+#    #+#             */
-/*   Updated: 2019/01/19 20:33:44 by mde-laga         ###   ########.fr       */
+/*   Updated: 2019/01/20 11:34:53 by mde-laga         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -77,7 +77,7 @@ int		main(int ac, char **av)
 	fd = open(av[1], O_RDONLY);
 	line = NULL;
 	tab = NULL;
-	tab= ft_getlist(line, tab, fd);
+	tab = ft_getlist(line, tab, fd);
 	list = NULL;
 	list = ft_formatlist(list, tab);
 
@@ -87,10 +87,8 @@ int		main(int ac, char **av)
 	size = ft_smallest_square(nb);
 	square = NULL;
 	square = ft_create_square(square, size);
-	ft_upleft(list, size);
-	printf("%d\n", size);
+//	ft_upleft(list, size);
 //	ft_convert_coor(list, 4, size);
-
 
 	int z = -1;
 	while (list[++z])
