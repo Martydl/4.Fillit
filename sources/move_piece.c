@@ -6,7 +6,7 @@
 /*   By: mde-laga <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/01/20 14:26:25 by mde-laga          #+#    #+#             */
-/*   Updated: 2019/01/20 14:33:48 by mde-laga         ###   ########.fr       */
+/*   Updated: 2019/01/20 16:49:45 by mde-laga         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -99,13 +99,16 @@ int		ft_down1left(int *tetri, int size)
 	return (1);
 }
 
+#include <stdio.h>
 int		ft_next(int *tetri, int size)
 {
 	int i;
 
 	i = -1;
+//	dprintf(1, "1\n");
 	while (tetri[++i] >= 0)
 	{
+//	dprintf(1, "2");
 		if (tetri[i] + 1 >= size * size)
 			return (-1);
 		if ((tetri[i] + 1) % size == 0)
