@@ -6,7 +6,7 @@
 /*   By: algautie <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/01/19 13:50:52 by algautie          #+#    #+#             */
-/*   Updated: 2019/01/19 17:11:06 by mde-laga         ###   ########.fr       */
+/*   Updated: 2019/01/20 12:45:15 by algautie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,14 +29,20 @@ void	ft_convert_coor(int **list, int from, int to)
 int		ft_up_or_left(int *p, int sp, int dec)
 {
 	int i;
+	int j;
 	int tmp;
 
 	i = 0;
 	while (i < sp || i < dec)
 	{
 		tmp = i * sp;
-		if (tmp == p[0] || tmp == p[1] || tmp == p[2] || tmp == p[3])
-			return (0);
+		j = 0;
+		while (j < sp || j < dec)
+		{
+			if (p[j] == tmp)
+				return (0);
+			j++;
+		}
 		i++;
 	}
 	i = -1;
