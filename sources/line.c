@@ -6,7 +6,7 @@
 /*   By: mde-laga <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/12/10 13:43:52 by mde-laga          #+#    #+#             */
-/*   Updated: 2019/01/19 17:39:17 by algautie         ###   ########.fr       */
+/*   Updated: 2019/01/20 10:57:16 by mde-laga         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -56,9 +56,10 @@ int		ft_verifstuff(char *line, int j, int k, int hash)
 			return (-1);
 		i++;
 	}
-	return (0);
+	return (1);
 }
 
+#include <stdio.h>
 int		ft_verifline(char *line)
 {
 	int j;
@@ -68,13 +69,13 @@ int		ft_verifline(char *line)
 
 	hash = 0;
 	len = ft_strlen(line);
-	if (len > 545)
+	if (len > 545 || line[0] == '\n' || line[len - 2] == '\n')
 		return (-1);
 	j = 1;
 	k = 0;
-	if (ft_verifstuff(line, j, k, hash) != 0)
+	if (ft_verifstuff(line, j, k, hash) == -1)
 		return (-1);
-	return (0);
+	return (1);
 }
 
 char	**ft_cutline(char *line, char **tab)
@@ -126,6 +127,6 @@ int		ft_check_neighbours(char *piece)
 		i++;
 	}
 	if (count == 6 || count == 8)
-		return (0);
-	return (1);
+		return (1);
+	return (-1);
 }
