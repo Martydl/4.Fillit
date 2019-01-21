@@ -6,12 +6,12 @@
 /*   By: mde-laga <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/01/20 14:26:25 by mde-laga          #+#    #+#             */
-/*   Updated: 2019/01/21 14:02:53 by mde-laga         ###   ########.fr       */
+/*   Updated: 2019/01/21 16:55:29 by mde-laga         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "fillit.h"
-
+#include <stdio.h>
 int		ft_convert_coor(int **list, int from, int to)
 {
 	int i;
@@ -46,7 +46,7 @@ int		ft_up_or_left(int *p, int sp, int dec)
 	{
 		tmp = i * sp;
 		j = 0;
-		while (j < sp || j < dec)
+		while (j < 4)
 		{
 			if (p[j] == tmp)
 				return (0);
@@ -92,10 +92,10 @@ int		ft_down1left(int *tetri, int size)
 		if (tetri[i] + size >= size * size)
 			return (-1);
 	}
-	while (--i >= 0)
-		tetri[i] += size;
 	while (ft_up_or_left(tetri, size, 1))
 		;
+	while (--i >= 0)
+		tetri[i] += size;
 	return (1);
 }
 
