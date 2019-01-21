@@ -6,7 +6,7 @@
 /*   By: mde-laga <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/01/20 14:25:34 by mde-laga          #+#    #+#             */
-/*   Updated: 2019/01/20 14:31:32 by mde-laga         ###   ########.fr       */
+/*   Updated: 2019/01/21 14:28:35 by mde-laga         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,7 +28,7 @@ char	**ft_cutline(char *line, char **tab);
 int		ft_check_neighbours(char *tetri);
 char	*ft_delret(char *piece);
 int		**ft_create_list(int **list, char **tab);
-int		ft_backtrack(char *square, int **list, int from, int size);
+int		ft_backtrack(char **square, int **list, int from, int size);
 int		ft_smallest_square(int nb_tetri);
 char	*ft_create_square(char *square, int size);
 int		ft_check(char *square, int *tetri, int letter);
@@ -46,5 +46,7 @@ char	*ft_strdup(const char *s1);
 void	ft_putstr(char const *s);
 void	ft_memdel(void **ap);
 char	*ft_strnew(size_t size);
+void	ft_freelist(int **list, int nb);
+void	ft_print_sq(char *square);
 
 #endif

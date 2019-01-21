@@ -6,7 +6,7 @@
 /*   By: mde-laga <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/01/20 14:25:50 by mde-laga          #+#    #+#             */
-/*   Updated: 2019/01/20 15:53:18 by algautie         ###   ########.fr       */
+/*   Updated: 2019/01/21 14:37:59 by mde-laga         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,21 +18,15 @@ void	ft_error(void)
 	exit(-1);
 }
 
-/*void	ft_freetab(t_piece *tab)
+void	ft_freelist(int **list, int nb)
 {
 	int i;
 
-	i = 0;
-	while (tab[i].piece)
-		i++;
-	while (i >= 0)
-	{
-		ft_memdel((void**)&tab[i].piece);
-		ft_memdel((void**)&tab[i].type);
-		i--;
-	}
-	free(tab);
-}*/
+	i = -1;
+	while (++i <= nb)
+		ft_memdel((void**)&list[i]);
+	free(list);
+}
 
 char	**ft_getlist(char *line, char **tab, int fd)
 {
@@ -105,17 +99,19 @@ int		main(int ac, char **av)
 	while (list[nb])
 		nb++;
 	size = ft_smallest_square(nb);
+	ft_upleft_all(list, 4);
+	while (ft_convert_coor(list, 4, size) == -1)
+		size++;
+/*	int z = -1;
+	while (list[++z])
+		printf("Pos = %d ; %d ; %d ; %d\n\n", list[z][0], list[z][1], list[z][2], list[z][3]);*/
 	square = NULL;
 	square = ft_create_square(square, size);
-	ft_upleft_all(list, 4);
-	ft_convert_coor(list, 4, size);
 
-	int z = -1;
-	while (list[++z])
-		printf("Pos = %d ; %d ; %d ; %d\n\n", list[z][0], list[z][1], list[z][2], list[z][3]);
-
-	dprintf(1, "%s\n\n", square);
-	ft_backtrack(square, list, size, nb);
+	ft_backtrack(&square, list, size, nb);
 	ft_print_sq(square);
+//	ft_putstr(square);
+	ft_strdel(&square);
+	ft_freelist(list, nb);
 	return (0);
 }

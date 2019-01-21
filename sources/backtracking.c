@@ -6,7 +6,7 @@
 /*   By: algautie <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/01/13 17:39:45 by algautie          #+#    #+#             */
-/*   Updated: 2019/01/20 17:00:55 by mde-laga         ###   ########.fr       */
+/*   Updated: 2019/01/21 14:53:05 by mde-laga         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,7 +42,7 @@ char	*ft_create_square(char *square, int size)
 {
 	int i;
 
-	//	ft_strdel(&square);
+	ft_strdel(&square);
 	if (!(square = (char*)malloc(sizeof(char) * (size * size + 1))))
 		return (NULL);
 	i = -1;
@@ -67,7 +67,7 @@ int		ft_check(char *square, int *tetri, int letter)
 	int i;
 
 	i = -1;
-	while (tetri[++i] != -1)
+	while (++i < 4)
 		if (square[tetri[i]] != '.')
 			return (-1);
 	while (--i >= 0)
@@ -75,38 +75,41 @@ int		ft_check(char *square, int *tetri, int letter)
 	return (1);
 }
 
-int		ft_backtrack(char *square, int **list, int size, int nb)
+int		ft_backtrack(char **square, int **list, int size, int nb)
 {
 	static int	z = 0;
-	int			back;
 
-	back = 0;
 	if (z == nb)
 		return (1);
-	while (z != -1)
+	if (ft_check(*square, list[z], z) == 1)
 	{
-		if (back == 0 || ft_next(list[z], size) == 1)
-		{
-			if (ft_check(square, list[z], z) == 1)
-			{
-				z++;
-				if (ft_backtrack(square, list, size, nb) == 1)
-					return (1);
-			}
-		}
-		if (puts("1")&& ft_next(list[z], size) == -1)
-		{
-			puts("2");
-			ft_upleft(list[z], size);
-			z--;
-			ft_del_tetri(square, z);
-			back = 1;
-		}
+		z++;
+		if (ft_backtrack(square, list, size, nb) == 1)
+			return (1);
 	}
-	z = 0;
-	ft_upleft_all(list, size);
-	ft_convert_coor(list, size, size + 1);
-	ft_create_square(square, ++size);
-	ft_backtrack(square, list, size, nb);
+	while (1)
+	{
+		if (ft_next(list[z], size) == 1)
+		{
+			if (ft_backtrack(square, list, size, nb))
+				return (1);
+		}
+		/*else if (z == 0)
+		{
+			dprintf(1, ":'(\n");
+			ft_upleft_all(list, size);
+			ft_convert_coor(list, size, size + 1);
+			*square = ft_create_square(*square, ++size);
+			//ft_print_sq(square);
+			//ft_putstr("\n");
+			if (ft_backtrack(square, list, size, nb))
+				return (1);
+		}*/
+		else
+			break ;
+	}
+	ft_upleft(list[z], size);
+	ft_del_tetri(*square, --z);
 	return (0);
+
 }
