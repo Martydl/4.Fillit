@@ -6,7 +6,7 @@
 /*   By: algautie <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/01/13 17:39:45 by algautie          #+#    #+#             */
-/*   Updated: 2019/01/21 16:40:16 by mde-laga         ###   ########.fr       */
+/*   Updated: 2019/01/21 18:36:56 by mde-laga         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -94,17 +94,14 @@ int		ft_backtrack(char **square, int **list, int size, int nb)
 			if (ft_backtrack(square, list, size, nb))
 				return (1);
 		}
-		/*else if (z == 0)
+		else if (z == 0)
 		{
-			dprintf(1, ":'(\n");
 			ft_upleft_all(list, size);
 			ft_convert_coor(list, size, size + 1);
 			*square = ft_create_square(*square, ++size);
-			//ft_print_sq(square);
-			//ft_putstr("\n");
 			if (ft_backtrack(square, list, size, nb))
 				return (1);
-		}*/
+		}
 		else
 			break ;
 	}
