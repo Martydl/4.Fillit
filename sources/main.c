@@ -6,7 +6,7 @@
 /*   By: mde-laga <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/01/20 14:25:50 by mde-laga          #+#    #+#             */
-/*   Updated: 2019/01/21 16:56:46 by mde-laga         ###   ########.fr       */
+/*   Updated: 2019/01/21 17:08:14 by mde-laga         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -109,7 +109,7 @@ int		main(int ac, char **av)
 	square = ft_create_square(square, size);
 
 	ft_backtrack(&square, list, size, nb);
-//	ft_print_sq(square);
+	ft_print_sq(square);
 //	ft_putstr(square);
 	ft_strdel(&square);
 	ft_freelist(list, nb);
