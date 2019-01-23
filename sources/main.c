@@ -6,7 +6,7 @@
 /*   By: mde-laga <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/01/20 14:25:50 by mde-laga          #+#    #+#             */
-/*   Updated: 2019/01/21 17:08:14 by mde-laga         ###   ########.fr       */
+/*   Updated: 2019/01/23 13:58:09 by mde-laga         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -102,15 +102,10 @@ int		main(int ac, char **av)
 	ft_upleft_all(list, 4);
 	while (ft_convert_coor(list, 4, size) == -1)
 		size++;
-/*	int z = -1;
-	while (list[++z])
-		printf("Pos = %d ; %d ; %d ; %d\n\n", list[z][0], list[z][1], list[z][2], list[z][3]);*/
 	square = NULL;
 	square = ft_create_square(square, size);
-
 	ft_backtrack(&square, list, size, nb);
 	ft_print_sq(square);
-//	ft_putstr(square);
 	ft_strdel(&square);
 	ft_freelist(list, nb);
 	return (0);
