@@ -6,53 +6,63 @@
 /*   By: mde-laga <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/01/20 14:25:50 by mde-laga          #+#    #+#             */
-/*   Updated: 2019/01/25 15:33:23 by mde-laga         ###   ########.fr       */
+/*   Updated: 2019/01/25 16:17:59 by mde-laga         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "fillit.h"
 
-void	ft_error(void)
-{
-	ft_putstr("error\n");
-	exit(-1);
-}
-
-void	ft_freelist(int **list, int nb)
+void	ft_error(char *line, char **tab, int **list)
 {
 	int i;
 
 	i = -1;
-	while (++i <= nb)
+	if (line)
+		ft_strdel(&line);
+	if (tab)
+		while (tab[++i] != NULL)
+			ft_strdel(&tab[i]);
+	free(tab);
+	if (list)
+		ft_freelist(list);
+	ft_putstr("error\n");
+	exit(0);
+}
+
+void	ft_freelist(int **list)
+{
+	int i;
+
+	i = -1;
+	while (list[++i])
 		ft_memdel((void**)&list[i]);
 	free(list);
 }
 
-char	**ft_getlist(char *line, char **tab, int fd)
+int		**ft_getlist(int **list, int fd)
 {
+	char	*line;
+	char	**tab;
+	int		i;
+
+	line = NULL;
+	tab = NULL;
 	if (!line && (!(line = ft_strnew(1))))
 		return (NULL);
 	line = ft_getline(fd, line);
 	if (ft_verifline(line) == -1)
-		ft_error();
+		ft_error(line, tab, list);
 	tab = ft_cutline(line, tab);
 	ft_strdel(&line);
-	return (tab);
-}
-
-int		**ft_formatlist(int **list, char **tab)
-{
-	int i;
-
 	i = -1;
 	while (tab[++i])
 	{
 		if (ft_check_neighbours(tab[i]) == -1)
-			ft_error();
+			ft_error(line, tab, list);
 		tab[i] = ft_delret(tab[i]);
 	}
 	list = ft_create_list(list, tab);
-	return(list);
+	return (list);
 }
 
 void	ft_print_sq(char *square)
@@ -78,22 +88,21 @@ void	ft_print_sq(char *square)
 int		main(int ac, char **av)
 {
 	int		fd;
-	char	*line;
-	char	**tab;
 	int		**list;
 	char	*square;
 	int		nb;
 	int		size;
 
 	if (ac != 2)
-		ft_error();
+	{
+		ft_putstr("usage: ./fillit file\n");
+		return (-1);
+	}
 	fd = open(av[1], O_RDONLY);
-	line = NULL;
-	tab = NULL;
-	tab = ft_getlist(line, tab, fd);
+	if (fd == -1)
+		ft_error(NULL, NULL, NULL);
 	list = NULL;
-	list = ft_formatlist(list, tab);
-
+	list = ft_getlist(list, fd);
 	nb = 0;
 	while (list[nb])
 		nb++;
@@ -106,6 +115,6 @@ int		main(int ac, char **av)
 	ft_backtrack(&square, list, size, nb);
 	ft_print_sq(square);
 	ft_strdel(&square);
-	ft_freelist(list, nb);
+	ft_freelist(list);
 	return (0);
 }

@@ -6,7 +6,7 @@
 /*   By: mde-laga <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/01/20 14:25:34 by mde-laga          #+#    #+#             */
-/*   Updated: 2019/01/21 18:52:27 by mde-laga         ###   ########.fr       */
+/*   Updated: 2019/01/25 16:01:11 by mde-laga         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,7 +21,7 @@
 # include <fcntl.h>
 # include <stdlib.h>
 
-void	ft_error(void);
+void	ft_error(char *line, char **tab, int **list);
 char	*ft_getline(int fd, char *line);
 int		ft_verifline(char *line);
 char	**ft_cutline(char *line, char **tab);
@@ -46,7 +46,7 @@ char	*ft_strdup(const char *s1);
 void	ft_putstr(char const *s);
 void	ft_memdel(void **ap);
 char	*ft_strnew(size_t size);
-void	ft_freelist(int **list, int nb);
+void	ft_freelist(int **list);
 void	ft_print_sq(char *square);
 
 #endif
