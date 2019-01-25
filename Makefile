@@ -9,6 +9,7 @@ SRC = 	sources/line.c \
 		sources/main.c \
 		sources/backtracking.c \
 		sources/move_piece.c \
+		sources/square.c\
 		sources/lib1.c \
 		sources/lib2.c \
 

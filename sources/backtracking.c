@@ -6,50 +6,24 @@
 /*   By: mde-laga <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/01/23 16:40:39 by mde-laga          #+#    #+#             */
-/*   Updated: 2019/01/25 15:23:40 by mde-laga         ###   ########.fr       */
+/*   Updated: 2019/01/25 15:25:56 by mde-laga         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "fillit.h"
 #include <stdio.h>
 
-int		ft_smallest_square(int nb_piece)
-{
-	int		size;
-
-	if (nb_piece == 1)
-		size = 2;
-	else if (nb_piece == 2)
-		size = 3;
-	else if (nb_piece >= 3 && nb_piece <= 4)
-		size = 4;
-	else if (nb_piece >= 5 && nb_piece <= 6)
-		size = 5;
-	else if (nb_piece >= 7 && nb_piece <= 9)
-		size = 6;
-	else if (nb_piece >= 10 && nb_piece <= 12)
-		size = 7;
-	else if (nb_piece >= 13 && nb_piece <= 16)
-		size = 8;
-	else if (nb_piece >= 17 && nb_piece <= 20)
-		size = 9;
-	else
-		size = 10;
-	return (size);
-}
-
-char	*ft_create_square(char *square, int size)
+int		ft_check(char *square, int *tetri, int letter)
 {
 	int i;
 
-	ft_strdel(&square);
-	if (!(square = (char*)malloc(sizeof(char) * (size * size + 1))))
-		return (NULL);
 	i = -1;
-	while (++i != size * size)
-		square[i] = '.';
-	square[i] = '\0';
-	return (square);
+	while (++i < 4)
+		if (square[tetri[i]] != '.')
+			return (-1);
+	while (--i >= 0)
+		square[tetri[i]] = 'A' + letter;
+	return (1);
 }
 
 int		ft_del_tetri(char *square, int letter)
@@ -63,19 +37,6 @@ int		ft_del_tetri(char *square, int letter)
 		if (square[i] == 'A' + letter && (square[i] = '.'))
 			ret = 0;
 	return (ret);
-}
-
-int		ft_check(char *square, int *tetri, int letter)
-{
-	int i;
-
-	i = -1;
-	while (++i < 4)
-		if (square[tetri[i]] != '.')
-			return (-1);
-	while (--i >= 0)
-		square[tetri[i]] = 'A' + letter;
-	return (1);
 }
 
 char	*ft_new_sq(int **list, char *square, int size)

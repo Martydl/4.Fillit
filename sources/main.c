@@ -6,7 +6,7 @@
 /*   By: mde-laga <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/01/20 14:25:50 by mde-laga          #+#    #+#             */
-/*   Updated: 2019/01/23 13:58:09 by mde-laga         ###   ########.fr       */
+/*   Updated: 2019/01/25 15:33:23 by mde-laga         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -55,8 +55,6 @@ int		**ft_formatlist(int **list, char **tab)
 	return(list);
 }
 
-#include <stdio.h>
-
 void	ft_print_sq(char *square)
 {
 	int		i;
@@ -87,7 +85,8 @@ int		main(int ac, char **av)
 	int		nb;
 	int		size;
 
-	(void)ac;
+	if (ac != 2)
+		ft_error();
 	fd = open(av[1], O_RDONLY);
 	line = NULL;
 	tab = NULL;
