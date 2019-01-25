@@ -119,10 +119,10 @@ int		ft_backtrack(char **square, int **list, int size, int nb)
 		ft_upleft_all(list, size);
 		ft_convert_coor(list, size, size + 1);
 		*square = ft_create_square(*square, ++size);
+		if (ft_backtrack(square, list, size, nb) == 1)
+			return (1);
 	}
 	else
 		ft_upleft(list[z--], size);
-	if (ft_backtrack(square, list, size, nb))
-		return (1);
 	return (0);
 }
