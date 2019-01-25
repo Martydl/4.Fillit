@@ -6,12 +6,12 @@
 /*   By: mde-laga <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/01/20 14:26:25 by mde-laga          #+#    #+#             */
-/*   Updated: 2019/01/23 16:15:04 by mde-laga         ###   ########.fr       */
+/*   Updated: 2019/01/25 15:02:54 by mde-laga         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "fillit.h"
-#include <stdio.h>
+
 int		ft_convert_coor(int **list, int from, int to)
 {
 	int i;
@@ -102,9 +102,6 @@ int		ft_next(int *tetri, int size)
 	int i;
 
 	i = -1;
-/*	int z = -1;
-	while(++z < 4)
-		dprintf(1, "%d\n", tetri[i]);*/
 	while (++i < 4)
 	{
 		if (tetri[i] + 1 >= size * size)
