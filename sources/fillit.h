@@ -21,22 +21,22 @@
 # include <fcntl.h>
 # include <stdlib.h>
 
-void	ft_error(char *line, char **tab, int **list);
 char	*ft_getline(int fd, char *line);
 int		ft_verifline(char *line);
 char	**ft_cutline(char *line, char **tab);
 int		ft_check_neighbours(char *tetri);
 char	*ft_delret(char *piece);
 int		**ft_create_list(int **list, char **tab);
-int		ft_backtrack(char **square, int **list, int from, int size);
 int		ft_smallest_square(int nb_tetri);
 char	*ft_create_square(char *square, int size);
-int		ft_check(char *square, int *tetri, int letter);
+int		ft_convert_coor(int **list, int from, int to);
+int		ft_backtrack(char **square, int **list, int from, int size);
 void	ft_upleft(int *tetri, int size);
 void	ft_upleft_all(int **list, int size);
+int		ft_check(char *square, int *tetri, int letter);
 int		ft_next(int *tetri, int size);
 int		ft_del_tetri(char *square, int letter);
-int		ft_convert_coor(int **list, int from, int to);
+void	ft_freelist(int **list);
 void	*ft_memset(void *b, int c, size_t len);
 char	*ft_strjoin(char const *s1, char const *s2);
 void	ft_strdel(char **as);
@@ -46,7 +46,5 @@ char	*ft_strdup(const char *s1);
 void	ft_putstr(char const *s);
 void	ft_memdel(void **ap);
 char	*ft_strnew(size_t size);
-void	ft_freelist(int **list);
-void	ft_print_sq(char *square);
 
 #endif

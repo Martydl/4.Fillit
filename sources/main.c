@@ -17,6 +17,11 @@ void	ft_error(char *line, char **tab, int **list)
 	int i;
 
 	i = -1;
+	if (line && ft_strlen(line) == 3)
+	{
+		ft_putstr("usage: ./fillit file\n");
+		exit(-1);
+	}
 	if (line)
 		ft_strdel(&line);
 	if (tab)
@@ -50,6 +55,7 @@ int		**ft_getlist(int **list, int fd)
 	if (!line && (!(line = ft_strnew(1))))
 		return (NULL);
 	line = ft_getline(fd, line);
+	ft_strlen(line) == 0 ? ft_error(line, tab, list) : 0;
 	if (ft_verifline(line) == -1)
 		ft_error(line, tab, list);
 	tab = ft_cutline(line, tab);
@@ -93,14 +99,9 @@ int		main(int ac, char **av)
 	int		nb;
 	int		size;
 
-	if (ac != 2)
-	{
-		ft_putstr("usage: ./fillit file\n");
-		return (-1);
-	}
+	ac != 2 ? ft_error("use", NULL, NULL) : 0;
 	fd = open(av[1], O_RDONLY);
-	if (fd == -1)
-		ft_error(NULL, NULL, NULL);
+	fd == -1 ? ft_error(NULL, NULL, NULL) : 0;
 	list = NULL;
 	list = ft_getlist(list, fd);
 	nb = 0;
