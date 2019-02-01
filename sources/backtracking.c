@@ -6,7 +6,7 @@
 /*   By: mde-laga <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/01/23 16:40:39 by mde-laga          #+#    #+#             */
-/*   Updated: 2019/01/25 15:25:56 by mde-laga         ###   ########.fr       */
+/*   Updated: 2019/02/01 09:44:48 by mde-laga         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -65,7 +65,7 @@ int		ft_backtrack(char **square, int **list, int size, int nb)
 				break ;
 			}
 		}
-	if (z == -1 && (*square = ft_new_sq(list, *square, size++)))
+	if (z == -1 && (*square = ft_new_sq(list, *square, size++)) != NULL)
 	{
 		z = 0;
 		if (ft_backtrack(square, list, size, nb) == 1)

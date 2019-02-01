@@ -6,7 +6,7 @@
 /*   By: mde-laga <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/12/10 13:43:52 by mde-laga          #+#    #+#             */
-/*   Updated: 2019/01/20 14:34:07 by mde-laga         ###   ########.fr       */
+/*   Updated: 2019/02/01 09:37:55 by mde-laga         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -88,14 +88,14 @@ char	**ft_cutline(char *line, char **tab)
 	while (line[++i])
 		(line[i] == '\n' && (!line[i + 1] || line[i + 1] == '\n')) ? size++ : 0;
 	if (!(tab = (char**)malloc(sizeof(char*) * (size + 1))))
-		return (NULL);
+		ft_error(line, tab, NULL);
 	i = 0;
 	j = 0;
 	size = ft_strlen(line);
 	while (i + 18 < size)
 	{
 		if (!(tab[j] = ft_strsub(line, i, 19)))
-			return (NULL);
+			ft_error(line, tab, NULL);
 		i += 21;
 		j++;
 	}

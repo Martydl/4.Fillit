@@ -6,7 +6,7 @@
 /*   By: algautie <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/01/12 14:41:03 by algautie          #+#    #+#             */
-/*   Updated: 2019/01/21 14:52:17 by mde-laga         ###   ########.fr       */
+/*   Updated: 2019/02/01 09:40:40 by mde-laga         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -58,12 +58,12 @@ int		**ft_create_list(int **list, char **tab)
 	while (tab[i])
 		i++;
 	if (!(list = (int**)malloc(sizeof(int*) * (i + 1))))
-		return (NULL);
+		ft_error(NULL, tab, list);
 	list[i] = NULL;
 	while (--i >= 0)
 	{
 		if (!(list[i] = (int*)malloc(sizeof(int) * 5)))
-			return (NULL);
+			ft_error(NULL, tab, list);
 	}
 	while (tab[++i])
 		list[i] = ft_convert_tetri(list[i], tab[i]);

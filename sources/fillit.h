@@ -6,7 +6,7 @@
 /*   By: mde-laga <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/01/20 14:25:34 by mde-laga          #+#    #+#             */
-/*   Updated: 2019/01/25 16:01:11 by mde-laga         ###   ########.fr       */
+/*   Updated: 2019/02/01 09:37:12 by mde-laga         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,6 +21,7 @@
 # include <fcntl.h>
 # include <stdlib.h>
 
+void	ft_error(char *line, char **tab, int **list);
 char	*ft_getline(int fd, char *line);
 int		ft_verifline(char *line);
 char	**ft_cutline(char *line, char **tab);

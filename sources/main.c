@@ -6,7 +6,7 @@
 /*   By: mde-laga <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/01/20 14:25:50 by mde-laga          #+#    #+#             */
-/*   Updated: 2019/01/25 16:17:59 by mde-laga         ###   ########.fr       */
+/*   Updated: 2019/02/01 09:44:12 by mde-laga         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -53,7 +53,7 @@ int		**ft_getlist(int **list, int fd)
 	line = NULL;
 	tab = NULL;
 	if (!line && (!(line = ft_strnew(1))))
-		return (NULL);
+		ft_error(line, NULL, NULL);
 	line = ft_getline(fd, line);
 	ft_strlen(line) == 0 ? ft_error(line, tab, list) : 0;
 	if (ft_verifline(line) == -1)
@@ -65,7 +65,8 @@ int		**ft_getlist(int **list, int fd)
 	{
 		if (ft_check_neighbours(tab[i]) == -1)
 			ft_error(line, tab, list);
-		tab[i] = ft_delret(tab[i]);
+		if (!(tab[i] = ft_delret(tab[i])))
+			ft_error(line, tab, list);
 	}
 	list = ft_create_list(list, tab);
 	return (list);
@@ -113,7 +114,8 @@ int		main(int ac, char **av)
 		size++;
 	square = NULL;
 	square = ft_create_square(square, size);
-	ft_backtrack(&square, list, size, nb);
+	if (ft_backtrack(&square, list, size, nb) == 0)
+		ft_error(NULL, NULL, list);
 	ft_print_sq(square);
 	ft_strdel(&square);
 	ft_freelist(list);
