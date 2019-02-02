@@ -6,7 +6,7 @@
 /*   By: mde-laga <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/12/10 13:43:52 by mde-laga          #+#    #+#             */
-/*   Updated: 2019/02/02 14:26:42 by algautie         ###   ########.fr       */
+/*   Updated: 2019/02/02 14:33:22 by algautie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,8 +24,8 @@ char	*ft_getline(int fd, char *line)
 			return (0);
 		buf[ret] = '\0';
 		tmp = line;
-		if (!(line = ft_strjoin(tmp, buf)))
-			return (0);
+		if (!(line = ft_strjoin(tmp, buf)) || ft_strlen(line) > 550)
+			ft_error(line, NULL, NULL);
 		ft_strdel(&tmp);
 	}
 	return (line);
