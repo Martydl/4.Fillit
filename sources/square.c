@@ -6,7 +6,7 @@
 /*   By: mde-laga <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/01/25 15:23:20 by mde-laga          #+#    #+#             */
-/*   Updated: 2019/01/25 15:30:05 by mde-laga         ###   ########.fr       */
+/*   Updated: 2019/02/02 10:43:10 by mde-laga         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -72,4 +72,24 @@ int		ft_convert_coor(int **list, int from, int to)
 			list[i][j] = list[i][j] + ((list[i][j] / from) * (to - from));
 	}
 	return (1);
+}
+
+void	ft_print_sq(char *square)
+{
+	int		i;
+	int		len;
+	int		size;
+
+	i = 0;
+	size = 2;
+	len = ft_strlen(square);
+	while (size * size != len)
+		size++;
+	while (square[i] != '\0')
+	{
+		if (i % size == 0 && i != 0)
+			ft_putstr("\n");
+		write(1, &square[i], 1);
+		i++;
+	}
 }

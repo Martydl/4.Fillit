@@ -6,7 +6,7 @@
 /*   By: mde-laga <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/01/20 14:25:34 by mde-laga          #+#    #+#             */
-/*   Updated: 2019/02/01 09:37:12 by mde-laga         ###   ########.fr       */
+/*   Updated: 2019/02/02 10:43:36 by mde-laga         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,6 +37,7 @@ void	ft_upleft_all(int **list, int size);
 int		ft_check(char *square, int *tetri, int letter);
 int		ft_next(int *tetri, int size);
 int		ft_del_tetri(char *square, int letter);
+void	ft_print_sq(char *square);
 void	ft_freelist(int **list);
 void	*ft_memset(void *b, int c, size_t len);
 char	*ft_strjoin(char const *s1, char const *s2);

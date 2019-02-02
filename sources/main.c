@@ -6,7 +6,7 @@
 /*   By: mde-laga <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/01/20 14:25:50 by mde-laga          #+#    #+#             */
-/*   Updated: 2019/02/01 09:44:12 by mde-laga         ###   ########.fr       */
+/*   Updated: 2019/02/02 10:44:59 by mde-laga         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,11 +17,6 @@ void	ft_error(char *line, char **tab, int **list)
 	int i;
 
 	i = -1;
-	if (line && ft_strlen(line) == 3)
-	{
-		ft_putstr("usage: ./fillit file\n");
-		exit(-1);
-	}
 	if (line)
 		ft_strdel(&line);
 	if (tab)
@@ -32,6 +27,12 @@ void	ft_error(char *line, char **tab, int **list)
 		ft_freelist(list);
 	ft_putstr("error\n");
 	exit(0);
+}
+
+void	ft_use(void)
+{
+	ft_putstr("usage: ./fillit file\n");
+	exit(-1);
 }
 
 void	ft_freelist(int **list)
@@ -72,26 +73,6 @@ int		**ft_getlist(int **list, int fd)
 	return (list);
 }
 
-void	ft_print_sq(char *square)
-{
-	int		i;
-	int		len;
-	int		size;
-
-	i = 0;
-	size = 2;
-	len = ft_strlen(square);
-	while (size * size != len)
-		size++;
-	while (square[i] != '\0')
-	{
-		if (i % size == 0 && i != 0)
-			ft_putstr("\n");
-		write(1, &square[i], 1);
-		i++;
-	}
-}
-
 int		main(int ac, char **av)
 {
 	int		fd;
@@ -100,7 +81,7 @@ int		main(int ac, char **av)
 	int		nb;
 	int		size;
 
-	ac != 2 ? ft_error("use", NULL, NULL) : 0;
+	ac != 2 ? ft_use() : 0;
 	fd = open(av[1], O_RDONLY);
 	fd == -1 ? ft_error(NULL, NULL, NULL) : 0;
 	list = NULL;
@@ -114,8 +95,7 @@ int		main(int ac, char **av)
 		size++;
 	square = NULL;
 	square = ft_create_square(square, size);
-	if (ft_backtrack(&square, list, size, nb) == 0)
-		ft_error(NULL, NULL, list);
+	ft_backtrack(&square, list, size, nb) == 0 ? ft_error(NULL, NULL, list) : 0;
 	ft_print_sq(square);
 	ft_strdel(&square);
 	ft_freelist(list);
